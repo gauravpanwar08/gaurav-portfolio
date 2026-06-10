@@ -13,14 +13,18 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+
+
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Icons (Lucide) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Icons (Lucide) - loaded via UMD at bottom of body -->
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -32,18 +36,18 @@
                         brand: {
                             50: '#eff6ff',
                             100: '#dbeafe',
-                            300: '#93c5fd', // Added for blob
-                            400: '#60a5fa', // Added for blob
-                            500: '#3b82f6', // Bright Blue
-                            600: '#2563eb', // Primary Action
-                            700: '#1d4ed8', // Darker Blue
-                            900: '#1e3a8a', // Deep Navy
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
                         },
                         accent: {
                             50: '#f5f3ff',
                             200: '#ddd6fe',
-                            300: '#c4b5fd', // Added for blob
-                            600: '#7c3aed', // Violet/Purple
+                            300: '#c4b5fd',
+                            600: '#7c3aed',
                             700: '#6d28d9',
                         },
                         dark: {
@@ -53,14 +57,11 @@
                     },
                     animation: {
                         'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'scroll': 'scroll 15s linear infinite', /* Fast continuous speed */
+                        'scroll': 'scroll 15s linear infinite',
                         'blob': 'blob 7s infinite',
                         'text-shimmer': 'text-shimmer 3s linear infinite',
-                        'blink': 'blink 1s step-end infinite', /* Cursor Blink */
-                        'wave': 'wave 2.5s infinite', /* Hand Wave Animation */
-                        'expand-width': 'expandWidth 1.5s ease-out forwards',
-                        'shine': 'shine 1.5s infinite', /* Button Shine */
-                        'shimmer-slide': 'shimmerSlide 2s infinite',
+                        'blink': 'blink 1s step-end infinite',
+                        'wave': 'wave 2.5s infinite',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -69,7 +70,7 @@
                         },
                         scroll: {
                             '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' }, /* Perfect loop point */
+                            '100%': { transform: 'translateX(-50%)' },
                         },
                         blob: {
                             '0%': { transform: 'translate(0px, 0px) scale(1)' },
@@ -101,327 +102,73 @@
                             '60%': { transform: 'rotate(0.0deg)' },
                             '100%': { transform: 'rotate(0.0deg)' },
                         },
-                        expandWidth: {
-                            '0%': { width: '0%' },
-                            '100%': { width: 'var(--target-width)' }
-                        },
-                        shine: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100%)' }
-                        },
-                        shimmerSlide: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100%)' }
-                        }
                     },
                     backgroundImage: {
-                        'hero-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                        'hero-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E\")",
                     }
                 }
             }
-        }
+        };
     </script>
 
-    <style>
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        a[title]:hover::after {
-            content: attr(title);
-            position: absolute;
-            bottom: -32px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1e293b;
-            color: #fff;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 4px 8px;
-            border-radius: 6px;
-            white-space: nowrap;
-            pointer-events: none;
-            z-index: 99;
-            opacity: 1;
-        }
-
-        .hero-gradient-text {
-            background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .feature-card-hover {
-            transition: all 0.3s ease;
-        }
-
-        .feature-card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            border-color: #bfdbfe;
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        /* Terminal Scrollbar */
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        /* Dark mode scrollbar for terminal */
-        #terminal-container .custom-scrollbar::-webkit-scrollbar-track {
-            background: #1e293b;
-        }
-
-        #terminal-container .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #475569;
-        }
-
-        /* Hidden Projects Style */
-        .hidden-project {
-            display: none !important;
-        }
-
-        /* Open-to-work sticker */
-        .sticker-wrap {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #EEF2FF;
-            border: 1.5px solid #C7D2FE;
-            border-radius: 999px;
-            padding: 4px 10px 4px 6px;
-        }
-
-        .dot-live-hero {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #22c55e;
-            display: inline-block;
-            flex-shrink: 0;
-            animation: dotblink 1.4s ease-in-out infinite;
-        }
-
-        .rocket-anim-hero {
-            animation: rocketbounce 1.8s ease-in-out infinite;
-            display: inline-block;
-            font-size: 16px;
-        }
-
-        @keyframes dotblink {
-
-            0%,
-            100% {
-                opacity: 1;
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Instant dark mode init (prevents flash) -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && prefersDark)) {
+                document.documentElement.classList.add('dark');
             }
-
-            50% {
-                opacity: 0.6;
-                box-shadow: 0 0 0 4px rgba(34, 197, 94, 0);
-            }
-        }
-
-        @keyframes rocketbounce {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(-25deg);
-            }
-
-            40% {
-                transform: translateY(-5px) rotate(-25deg);
-            }
-
-            60% {
-                transform: translateY(-3px) rotate(-25deg);
-            }
-        }
-
-        /* Footer art animations */
-        @keyframes ftsnake {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(-4deg)
-            }
-
-            50% {
-                transform: translateY(-10px) rotate(3deg)
-            }
-        }
-
-        @keyframes ftblink {
-
-            0%,
-            90%,
-            100% {
-                transform: scaleY(1)
-            }
-
-            95% {
-                transform: scaleY(0.1)
-            }
-        }
-
-        @keyframes fttongue {
-
-            0%,
-            60%,
-            100% {
-                transform: scaleX(1)
-            }
-
-            80% {
-                transform: scaleX(1.5)
-            }
-        }
-
-        @keyframes ftleaf {
-
-            0%,
-            100% {
-                transform: rotate(-8deg)
-            }
-
-            50% {
-                transform: rotate(8deg)
-            }
-        }
-
-        @keyframes ftcup {
-
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-
-            40% {
-                transform: translateY(-12px)
-            }
-
-            60% {
-                transform: translateY(-7px)
-            }
-        }
-
-        @keyframes ftsteam1 {
-            0% {
-                transform: translateY(0);
-                opacity: .6
-            }
-
-            100% {
-                transform: translateY(-20px);
-                opacity: 0
-            }
-        }
-
-        @keyframes ftsteam2 {
-            0% {
-                transform: translateY(0);
-                opacity: .4
-            }
-
-            100% {
-                transform: translateY(-24px);
-                opacity: 0
-            }
-        }
-
-        @keyframes ftspark {
-            0% {
-                opacity: 1;
-                transform: translate(0, 0) scale(1)
-            }
-
-            100% {
-                opacity: 0;
-                transform: translate(var(--ftdx), var(--ftdy)) scale(0)
-            }
-        }
-
-        /* Floating particles */
-        .hero-particle {
-            position: absolute;
-            pointer-events: none;
-            animation: particlefloat linear infinite;
-            opacity: 0;
-            font-size: 22px;
-            filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.3));
-        }
-
-        @keyframes particlefloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            5% {
-                opacity: 0.6;
-            }
-
-            90% {
-                opacity: 0.4;
-            }
-
-            100% {
-                transform: translateY(-120px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Gradient section patch */
-        .section-gradient-patch {
-            position: relative;
-        }
-
-        .section-gradient-patch::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.04) 0%, rgba(124, 58, 237, 0.04) 50%, rgba(236, 72, 153, 0.03) 100%);
-            pointer-events: none;
-        }
-    </style>
+        })();
+    </script>
 </head>
 
-<body class="font-sans text-slate-700 antialiased overflow-x-hidden">
+<body
+    class="font-sans text-slate-700 dark:text-slate-300 dark:bg-dark-900 antialiased overflow-x-hidden w-full max-w-[100vw]">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-16 md:h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer"
                     onclick="handleNavClick(event, 'home')">
-                    <img src="https://ui-avatars.com/api/?name=Gaurav+Singh+Panwar&background=2563eb&color=fff&rounded=true&bold=true&size=128"
-                        alt="Logo" class="w-10 h-10 rounded-lg shadow-sm object-cover">
-                    <span class="font-bold text-lg sm:text-xl text-slate-900 tracking-tight whitespace-nowrap">Gaurav
-                        Singh Panwar</span>
+                    <!-- Modern GSP Logo Mark -->
+                    <div class="relative w-11 h-11 shrink-0">
+                        <svg width="100%" height="100%" viewBox="0 0 32 36" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#7c3aed" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Hexagon base -->
+                            <path d="M18 2 L32 10 L32 26 L18 34 L4 26 L4 10 Z" fill="url(#logoGrad)" />
+                            <!-- Bracket left -->
+                            <path d="M13 12 L9 18 L13 24" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round" fill="none" />
+                            <!-- Bracket right -->
+                            <path d="M23 12 L27 18 L23 24" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                                stroke-linejoin="round" fill="none" />
+                            <!-- Center dot -->
+                            <circle cx="18" cy="18" r="2" fill="white" opacity="0.9" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col leading-tight">
+                        <span
+                            class="font-bold text-lg sm:text-xl text-slate-900 tracking-tight whitespace-nowrap">Gaurav
+                            Singh Panwar</span>
+                        <span
+                            class="text-[10px] sm:text-[12px] text-brand-600 font-semibold uppercase tracking-widest mt-0.2">Backend
+                            Engineer</span>
+                    </div>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-4 lg:space-x-6">
                     <!-- About -->
                     <a href="#about" onclick="handleNavClick(event, 'about')"
                         class="nav-link text-sm font-medium text-slate-600 hover:text-brand-600 transition"
@@ -509,16 +256,28 @@
                 <!-- CTA Buttons -->
                 <div class="hidden md:flex items-center space-x-4">
 
-                    <a href="https://linkedin.com/in/gauravpanwar08" target="_blank"
-                        class="group flex-1 h-10 px-4 rounded-xl bg-brand-700 text-white flex items-center justify-center gap-2 font-medium hover:bg-brand-600 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
+                    <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
+                        class="group flex-1 h-10 px-4 rounded-xl bg-[#0A66C2] text-white flex items-center justify-center gap-2 font-medium hover:bg-brand-600 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
                         title="LinkedIn">
-                        <i data-lucide="linkedin" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-4 h-4 transition-transform group-hover:scale-110">
+                            <path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
+                            <rect width='4' height='12' x='2' y='9' />
+                            <circle cx='4' cy='4' r='2' />
+                        </svg>
                     </a>
 
                     <a href="https://github.com/gauravpanwar08" target="_blank"
                         class="group flex-1 h-10 px-4 rounded-xl bg-black text-white flex items-center justify-center gap-2 font-medium hover:bg-neutral-800 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
                         title="GitHub">
-                        <i data-lucide="github" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="w-4 h-4 transition-transform group-hover:scale-110">
+                            <path
+                                d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                            <path d='M9 18c-4.51 2-5-2-7-2' />
+                        </svg>
                     </a>
 
                     <a href="mailto:gauravsinghpanwar81@gmail.com"
@@ -528,116 +287,222 @@
                     </a>
 
                     <!-- Dark Mode Toggle -->
-                    <div class="pl-4 border-l border-slate-200">
-                        <i data-lucide="moon"
-                            class="w-5 h-5 text-slate-400 cursor-pointer hover:text-slate-600 transition"></i>
+                    <div class="pl-4 border-l h-10 border-slate-400 dark:border-purple-100">
+                        <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+                            <!-- Moon icon (shown in light mode) -->
+                            <svg class="icon-moon w-5 h-5 text-slate-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                            </svg>
+                            <!-- Sun icon (shown in dark mode) -->
+                            <svg class="icon-sun w-5 h-5 text-yellow-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+                                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
                     </div>
 
                 </div>
 
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none">
+                <!-- Mobile Menu Button (Hamburger - Top Right) -->
+                <div class="md:hidden flex items-center gap-2">
+                    <!-- Mobile Dark Mode Toggle -->
+                    <button id="theme-toggle-mobile" aria-label="Toggle dark mode"
+                        class="flex items-center justify-center w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-yellow-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <svg class="icon-moon w-4.5 h-4.5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />
+                        </svg>
+                        <svg class="icon-sun w-4.5 h-4.5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" stroke-linecap="round" />
+                            <line x1="12" y1="21" x2="12" y2="23" stroke-linecap="round" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-linecap="round" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-linecap="round" />
+                            <line x1="1" y1="12" x2="3" y2="12" stroke-linecap="round" />
+                            <line x1="21" y1="12" x2="23" y2="12" stroke-linecap="round" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-linecap="round" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-btn" aria-label="Open menu"
+                        class="text-slate-600 hover:text-slate-900 focus:outline-none p-2 rounded-lg hover:bg-slate-100 transition-colors">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
 
-
-            </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu"
-            class="md:hidden hidden bg-white border-t border-slate-100 absolute w-full left-0 z-50 shadow-lg max-h-[90vh] overflow-y-auto">
-            <div class="px-4 pt-2 pb-4 space-y-1">
-
-                <!-- Home -->
-                <a href="#" onclick="handleNavClick(event, 'home')"
-                    class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
-                    data-target="home">Home</a>
-                <!-- About -->
-                <a href="#about" onclick="handleNavClick(event, 'about')"
-                    class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
-                    data-target="about">About</a>
-
-                <!-- Education -->
-                <a href="#education" onclick="handleNavClick(event, 'education')"
-                    class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
-                    data-target="education">Education</a>
-
-                <!-- Projects -->
-                <a href="#projects" onclick="handleNavClick(event, 'projects')"
-                    class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50"
-                    data-target="projects">Projects</a>
-
-                <!-- Expertise Section -->
-                <div class="px-3 py-2">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Expertise</span>
-                    <div class="pl-4 border-l-2 border-slate-100 space-y-1">
-                        <a href="#skills" onclick="handleNavClick(event, 'skills')"
-                            class="nav-link-mobile block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50"
-                            data-target="skills">Tech Stack</a>
-                        <a href="#expertise" onclick="handleNavClick(event, 'expertise')"
-                            class="nav-link-mobile block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50"
-                            data-target="expertise">Technical Expertise</a>
-                    </div>
-                </div>
-
-                <!-- Showcase Section -->
-                <div class="px-3 py-2">
-                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 block">Showcase</span>
-                    <div class="pl-4 border-l-2 border-slate-100 space-y-1">
-                        <a href="#architecture" onclick="handleNavClick(event, 'architecture')"
-                            class="nav-link-mobile block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50"
-                            data-target="architecture">System Architecture</a>
-                        <a href="#playground" onclick="handleNavClick(event, 'playground')"
-                            class="nav-link-mobile block px-3 py-2 rounded-md text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50"
-                            data-target="playground">API Playground</a>
-                    </div>
-                </div>
-
-                <!-- Contact -->
-                <a href="#contact" onclick="handleNavClick(event, 'contact')"
-                    class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-brand-600 hover:bg-slate-50"
-                    data-target="contact">Contact</a>
-
-                <!-- Mobile Social & Resume Row -->
-                <div class="pt-4 mt-4 border-t border-slate-100">
-                    <div class="flex items-center justify-between px-3">
-                        <div class="flex items-center gap-4">
-                            <!-- LinkedIn -->
-                            <a href="https://linkedin.com/in/gauravpanwar08" target="_blank"
-                                class="group flex-1 h-10 px-4 rounded-xl bg-brand-700 text-white flex items-center justify-center gap-2 font-medium hover:bg-brand-600 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap">
-                                <i data-lucide="linkedin"
-                                    class="w-4 h-4 transition-transform group-hover:scale-110"></i>
-                            </a>
-
-                            <!-- GitHub -->
-                            <a href="https://github.com/gauravpanwar08" target="_blank"
-                                class="group flex-1 h-10 px-4 rounded-xl bg-black text-white flex items-center justify-center gap-2 font-medium hover:bg-neutral-800 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap">
-                                <i data-lucide="github" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
-                            </a>
-
-                            <!-- Email -->
-                            <a href="mailto:gauravsinghpanwar81@gmail.com"
-                                class="group flex-1 h-10 px-4 rounded-xl bg-[#EA4335] text-white flex items-center justify-center gap-2 font-medium hover:bg-[#D93025] transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/30 whitespace-nowrap">
-                                <i data-lucide="mail" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
-                            </a>
-                        </div>
-                        <a href="/resume.pdf" download
-                            class="flex items-center gap-2 bg-green-600 text-white px-4 py-1.5 rounded-lg text-sm font-medium hover:bg-green-700 transition-all hover:-translate-y-1 hover:shadow-lg">
-                            <i data-lucide="download" class="w-4 h-7"></i>
-                            Resume
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Drawer Overlay -->
+    <div id="drawer-overlay"
+        class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+        aria-hidden="true"></div>
+
+    <!-- Mobile Drawer Panel (Right-to-Left slide) -->
+    <div id="mobile-drawer"
+        class="fixed top-0 right-0 h-auto max-h-screen w-[82%] max-w-[300px] bg-white z-[70] shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+        style="-webkit-overflow-scrolling: touch; overscroll-behavior: contain;">
+
+        <!-- Drawer Header -->
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50/70 shrink-0">
+            <div class="flex items-center gap-2.5">
+                <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGrad2" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#2563eb" />
+                            <stop offset="100%" stop-color="#7c3aed" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M18 2 L32 10 L32 26 L18 34 L4 26 L4 10 Z" fill="url(#logoGrad2)" />
+                    <path d="M13 12 L9 18 L13 24" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round" fill="none" />
+                    <path d="M23 12 L27 18 L23 24" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round" fill="none" />
+                    <circle cx="18" cy="18" r="2" fill="white" opacity="0.9" />
+                </svg>
+                <div class="flex items-center gap-3 p-3 bg-slate-200 rounded-2xl">
+                    <div class="w-1.5 h-8 bg-indigo-600 rounded-full"></div>
+                    <div>
+                        <div class="text-sm font-bold text-slate-900">Gaurav Singh Panwar</div>
+                        <div class="text-[11px] font-semibold text-indigo-600 uppercase tracking-wide">Backend Engineer
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button id="drawer-close-btn" aria-label="Close menu"
+                class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Drawer Nav Links -->
+        <nav class="flex-1 px-4 py-3 space-y-0.5 overflow-y-auto"
+            style="overscroll-behavior: contain; -webkit-overflow-scrolling: touch;">
+            <!-- Home -->
+            <a href="#" onclick="handleNavClick(event,'home')"
+                class="drawer-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                data-target="home">
+                <i data-lucide="home" class="w-4 h-4 text-slate-400"></i> Home
+            </a>
+            <!-- About -->
+            <a href="#about" onclick="handleNavClick(event,'about')"
+                class="drawer-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                data-target="about">
+                <i data-lucide="user" class="w-4 h-4 text-slate-400"></i> About
+            </a>
+            <!-- Education -->
+            <a href="#education" onclick="handleNavClick(event,'education')"
+                class="drawer-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                data-target="education">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-slate-400"></i> Education
+            </a>
+            <!-- Projects -->
+            <a href="#projects" onclick="handleNavClick(event,'projects')"
+                class="drawer-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                data-target="projects">
+                <i data-lucide="folder-open" class="w-4 h-4 text-slate-400"></i> Projects
+            </a>
+
+            <!-- Expertise Group -->
+            <div class="pt-3 pb-1">
+                <p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Expertise</p>
+                <div class="pl-4 border-l-2 border-slate-100 space-y-0.5">
+                    <a href="#skills" onclick="handleNavClick(event,'skills')"
+                        class="drawer-nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                        data-target="skills">
+                        <i data-lucide="terminal" class="w-3.5 h-3.5 text-slate-400"></i> Tech Stack
+                    </a>
+                    <a href="#expertise" onclick="handleNavClick(event,'expertise')"
+                        class="drawer-nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                        data-target="expertise">
+                        <i data-lucide="layers" class="w-3.5 h-3.5 text-slate-400"></i> Technical Expertise
+                    </a>
+                </div>
+            </div>
+
+            <!-- Showcase Group -->
+            <div class="pt-1 pb-1">
+                <p class="px-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Showcase</p>
+                <div class="pl-4 border-l-2 border-slate-100 space-y-0.5">
+                    <a href="#architecture" onclick="handleNavClick(event,'architecture')"
+                        class="drawer-nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                        data-target="architecture">
+                        <i data-lucide="network" class="w-3.5 h-3.5 text-slate-400"></i> System Architecture
+                    </a>
+                    <a href="#playground" onclick="handleNavClick(event,'playground')"
+                        class="drawer-nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                        data-target="playground">
+                        <i data-lucide="terminal" class="w-3.5 h-3.5 text-slate-400"></i> API Playground
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <a href="#contact" onclick="handleNavClick(event,'contact')"
+                class="drawer-nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-all"
+                data-target="contact">
+                <i data-lucide="send" class="w-4 h-4 text-slate-400"></i> Contact
+            </a>
+        </nav>
+
+        <!-- Drawer Footer: Social + Resume -->
+        <div class="px-5 py-4 border-t border-slate-100 bg-slate-50/70">
+            <div class="flex items-center gap-3 mb-3">
+                <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
+                    class="flex-1 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center hover:bg-brand-600 transition-all shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                        <path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
+                        <rect width='4' height='12' x='2' y='9' />
+                        <circle cx='4' cy='4' r='2' />
+                    </svg>
+                </a>
+                <a href="https://github.com/gauravpanwar08" target="_blank"
+                    class="flex-1 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center hover:bg-slate-700 transition-all shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                        <path
+                            d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                        <path d='M9 18c-4.51 2-5-2-7-2' />
+                    </svg>
+                </a>
+                <a href="mailto:gauravsinghpanwar81@gmail.com"
+                    class="flex-1 h-10 rounded-xl bg-[#EA4335] text-white flex items-center justify-center hover:bg-[#D93025] transition-all shadow-sm">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <a href="assets/resume/resume.pdf" download
+                class="w-full flex items-center justify-center gap-2 bg-emerald-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-emerald-700 transition-all shadow-sm">
+                <i data-lucide="download" class="w-4 h-4"></i> Download Resume
+            </a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="relative pt-24 pb-2 lg:pt-28 lg:pb-4 overflow-hidden bg-slate-50/40">
+    <section class="relative pt-20 pb-4 sm:pt-24 sm:pb-2 lg:pt-28 lg:pb-4 overflow-hidden bg-slate-50/40">
         <!-- Background Decor (Blobs) -->
         <div class="absolute inset-0 -z-10 overflow-hidden">
             <div class="absolute top-0 right-0 w-full h-full bg-hero-pattern opacity-60"></div>
@@ -671,7 +536,7 @@
                     </div>
 
                     <!-- Main Heading -->
-                    <h1 class="font-display text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-2 animate-fade-in-up"
+                    <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-2 animate-fade-in-up"
                         style="animation-delay: 0.1s;">
                         Hi, I'm <br>
                         <span
@@ -680,7 +545,7 @@
                     </h1>
 
                     <!-- Typewriter Effect -->
-                    <div class="text-lg sm:text-xl font-medium text-slate-700 mb-3 h-8 flex items-center animate-fade-in-up"
+                    <div class="text-base sm:text-lg md:text-xl font-medium text-slate-700 mb-3 h-8 flex items-center animate-fade-in-up overflow-hidden"
                         style="animation-delay: 0.15s;">
                         <span class="mr-2">I build</span>
                         <span id="typewriter"
@@ -696,19 +561,22 @@
                         integrations.
                     </p>
 
-                    <!-- Action Buttons -->
-                    <div class="flex flex-wrap gap-3 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <!-- Action Buttons - single horizontal row on all screen sizes -->
+                    <div class="flex flex-nowrap gap-2 sm:gap-3 animate-fade-in-up" style="animation-delay: 0.3s;">
                         <a href="#projects" onclick="handleNavClick(event,'projects')"
-                            class="px-5 py-2.5 rounded-lg bg-brand-600 text-white font-semibold shadow-md hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-300 text-sm shadow-brand-500/25 flex items-center gap-2">
-                            <i data-lucide="folder-open" class="w-4 h-4"></i> View My Work
+                            class="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 rounded-lg bg-brand-600 text-white font-semibold shadow-md hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm shadow-brand-500/25 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                            <i data-lucide="folder-open" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                            <span>View My Work</span>
                         </a>
-                        <a href="#about" download
-                            class="px-5 py-2.5 rounded-lg bg-white border-2 border-brand-300 text-brand-700 font-semibold hover:border-brand-600 hover:bg-brand-50 hover:-translate-y-0.5 transition-all duration-300 text-sm flex items-center gap-2">
-                            <i data-lucide="eye" class="w-4 h-4"></i> Resume Preview
+                        <a href="#resume-preview" onclick="handleNavClick(event,'resume-preview')"
+                            class="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 rounded-lg bg-white border-2 border-brand-300 text-brand-700 font-semibold hover:border-brand-600 hover:bg-brand-50 hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                            <i data-lucide="eye" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                            <span>Resume</span>
                         </a>
                         <a href="#contact" onclick="handleNavClick(event,'contact')"
-                            class="px-5 py-2.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-md hover:bg-emerald-700 hover:-translate-y-0.5 transition-all duration-300 text-sm shadow-emerald-500/25 flex items-center gap-2">
-                            <i data-lucide="send" class="w-4 h-4"></i> Get in Touch
+                            class="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-md hover:bg-emerald-700 hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm shadow-emerald-500/25 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
+                            <i data-lucide="send" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                            <span>Get in Touch</span>
                         </a>
                     </div>
 
@@ -842,7 +710,7 @@
     </section>
 
     <!-- Trusted By / Tech Stack Marquee (Seamless Loop) -->
-    <section class="py-10 border-y border-slate-100 bg-slate-50 relative z-20">
+    <section class="py-10 border-y border-slate-100 bg-slate-100 relative z-20">
         <div class="max-w-7xl mx-auto px-4 text-center mb-6">
             <p class="text-sm font-bold text-slate-600 uppercase tracking-wider">Powering applications with modern tech
                 stacks</p>
@@ -857,8 +725,6 @@
             </div>
 
             <div class="flex animate-scroll w-max hover:[animation-play-state:paused] py-4 will-change-transform">
-                <!-- IMPORTANT: No space-x on parent, using PR-16 on children to include gap in width calculation for 50% slide -->
-
                 <!-- SET 1 -->
                 <div class="flex space-x-16 pr-16 items-center">
                     <span
@@ -1028,23 +894,24 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-white border-b border-slate-100">
+    <section id="about" class="py-14 sm:py-24 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- New Centered Header -->
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
                 <h2 class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">My Journey</h2>
-                <h3 class="text-4xl font-bold text-slate-900">About Me</h3>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900">About Me</h3>
                 <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
 
                 <!-- Left Column: Biography & Approach -->
-                <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-6 sm:gap-8">
                     <div>
-                        <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">More than just code. <br>I build
+                        <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">More than
+                            just code. <br>I build
                             reliability.</h3>
-                        <div class="space-y-6 text-lg text-slate-600 leading-relaxed">
+                        <div class="space-y-4 sm:space-y-6 text-base sm:text-lg text-slate-600 leading-relaxed">
                             <p>
                                 I am a <span class="font-semibold text-slate-900">Python Backend Developer</span>
                                 specializing in <span class="font-semibold text-slate-900">scalable systems</span>,
@@ -1136,7 +1003,7 @@
                 </div>
 
                 <!-- Right Column: Modern Resume Card -->
-                <di
+                <div id="resume-preview"
                     class="relative bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col h-full">
                     <!-- Header/Profile -->
                     <div class="p-6 border-b border-slate-100 bg-slate-50/50">
@@ -1144,10 +1011,31 @@
                             <div class="flex gap-4">
                                 <div class="relative">
                                     <div
-                                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 p-0.5">
-                                        <img src="https://ui-avatars.com/api/?name=Gaurav+Singh+Panwar&background=2563eb&color=fff&rounded=true&bold=true&size=128"
-                                            alt="Gaurav"
-                                            class="w-full h-full rounded-[10px] object-cover border-2 border-white">
+                                        class="w-16 h-16 rounded-xl bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center overflow-hidden">
+                                        <svg width="56" height="56" viewBox="0 0 56 60" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Head -->
+                                            <circle cx="28" cy="18" r="11" fill="white" fill-opacity="0.9" />
+                                            <!-- Hair top -->
+                                            <path d="M17 16 Q17 6 28 6 Q39 6 39 16 Q36 11 28 11 Q20 11 17 16 Z"
+                                                fill="white" fill-opacity="0.45" />
+                                            <!-- Eyes -->
+                                            <circle cx="23.5" cy="18" r="1.6" fill="#3b82f6" fill-opacity="0.8" />
+                                            <circle cx="32.5" cy="18" r="1.6" fill="#3b82f6" fill-opacity="0.8" />
+                                            <!-- Smile -->
+                                            <path d="M23 23 Q28 27 33 23" stroke="#3b82f6" stroke-width="1.3"
+                                                stroke-linecap="round" fill="none" opacity="0.7" />
+                                            <!-- Neck -->
+                                            <rect x="24" y="28" width="8" height="5" rx="3" fill="white"
+                                                fill-opacity="0.75" />
+                                            <!-- Shirt/body -->
+                                            <path d="M12 58 Q12 44 20 40 Q24 45 28 45 Q32 45 36 40 Q44 44 44 58 Z"
+                                                fill="white" fill-opacity="0.35" />
+                                            <!-- Collar -->
+                                            <path d="M22 40 L28 47 L34 40" stroke="white" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round" fill="none"
+                                                opacity="0.5" />
+                                        </svg>
                                     </div>
                                     <div
                                         class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full">
@@ -1393,15 +1281,28 @@
                                 <div class="pt-2 mt-2 border-t border-slate-200/60 flex gap-3">
                                     <a href="https://github.com/gauravpanwar08" target="_blank"
                                         class="flex-1 flex items-center justify-center gap-2 p-2 bg-white border border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition group">
-                                        <i data-lucide="github"
-                                            class="w-4 h-4 text-slate-600 group-hover:text-slate-900"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="w-4 h-4 text-slate-600 group-hover:text-slate-900">
+                                            <path
+                                                d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                                            <path d='M9 18c-4.51 2-5-2-7-2' />
+                                        </svg>
                                         <span
                                             class="text-xs font-medium text-slate-600 group-hover:text-black">GitHub</span>
                                     </a>
-                                    <a href="https://linkedin.com/in/gauravpanwar08" target="_blank"
+                                    <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
                                         class="flex-1 flex items-center justify-center gap-2 p-2 bg-white border border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition group">
-                                        <i data-lucide="linkedin"
-                                            class="w-4 h-4 text-slate-600 group-hover:text-blue-900"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="w-4 h-4 text-slate-600 group-hover:text-blue-900">
+                                            <path
+                                                d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
+                                            <rect width='4' height='12' x='2' y='9' />
+                                            <circle cx='4' cy='4' r='2' />
+                                        </svg>
                                         <span
                                             class="text-xs font-medium text-slate-600 group-hover:text-blue-700">LinkedIn</span>
                                     </a>
@@ -1412,28 +1313,28 @@
 
 
 
-                    <!-- Footer with Download Button -->
+                    <!-- Resume-Preview Footer with Download Button -->
                     <div class="p-4 border-t border-slate-100 bg-slate-50/50">
-                        <a href="./assets/Gaurav_Singh_Panwar_Resume.pdf" download="Gaurav_Singh_Panwar_Resume.pdf"
+                        <a href="./assets/resume/Gaurav_Singh_Panwar_Resume.pdf"
+                            download="Gaurav_Singh_Panwar_Resume.pdf"
                             class="group flex items-center justify-center gap-2 px-4 py-2 bg-brand-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-brand-700 transition transform hover:-translate-y-0.5 w-full">
                             <i data-lucide="download" class="w-4 h-8 transition-transform group-hover:scale-110"></i>
                             <span>Download Resume</span>
                         </a>
                     </div>
-            </div>
+                </div>
 
-        </div>
+            </div>
         </div>
     </section>
 
     <!-- Education Section -->
-
-    <section id="education" class="py-24 bg-white border-y border-slate-100 section-gradient-patch">
+    <section id="education" class="py-14 sm:py-24 bg-white border-y border-slate-100 section-gradient-patch">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
                 <h2 class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">Academic Background</h2>
-                <h3 class="text-4xl font-bold text-slate-900">Education</h3>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900">Education</h3>
                 <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
             </div>
 
@@ -1511,222 +1412,321 @@
 
 
     <!-- Skills Section -->
-    <section id="skills" class="py-24 bg-slate-50 border-y border-slate-200 section-gradient-patch">
+    <section id="skills" class="py-14 sm:py-24 bg-slate-50 border-y border-slate-200 section-gradient-patch">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
                 <h2 class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">Technical Proficiency</h2>
-                <h3 class="text-4xl font-bold text-slate-900">Skills & Technologies</h3>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900">Skills & Technologies</h3>
                 <div class="w-16 h-1 bg-brand-600 mx-auto mt-4 rounded-full"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
                 <!-- Card 1: Backend -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
+                    class="group relative bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                    <!-- Decorative Corner Glow Background (Visible on hover in dark mode) -->
+                    <div
+                        class="absolute -right-10 -top-10 w-24 h-24 bg-blue-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <!-- Icon Container with Scale Up Animation on Hover -->
+                        <div
+                            class="w-12 h-12 bg-blue-50 dark:bg-blue-950/40 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                             <i data-lucide="server" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900 leading-tight">Backend <br>Development</h4>
+                        <!-- Standardised Title: Entire heading lights up together on hover -->
+                        <h4
+                            class="text-xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                            Backend <br>Development
+                        </h4>
                     </div>
-                    <hr class="border-slate-200 mb-6">
-                    <div class="flex flex-wrap gap-3">
+
+                    <!-- Divider Line -->
+                    <hr class="border-slate-200 dark:border-slate-800 mb-6 transition-colors">
+
+                    <!-- Tech Tags with your Original Light Hover + New Dark Hover -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">Python</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">Python</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">Django</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">Django</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">FastAPI</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">FastAPI</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">Flask</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">Flask</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">SQL</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">SQL</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">NoSQL</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">NoSQL</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 transition cursor-default">RESTful
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-blue-50 hover:text-blue-700 dark:hover:bg-blue-950/50 dark:hover:text-blue-400 transition duration-200 cursor-default">RESTful
                             APIs</span>
                     </div>
                 </div>
 
+
+
                 <!-- Card 2: Databases & ORM -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600">
+                    class="group relative bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                    <!-- Decorative Corner Glow Background (Indigo variation) -->
+                    <div
+                        class="absolute -right-10 -top-10 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <!-- Icon Container with Indigo Accent Animations -->
+                        <div
+                            class="w-12 h-12 bg-indigo-50 dark:bg-indigo-950/40 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
                             <i data-lucide="database" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900">Databases & ORM</h4>
+                        <h4
+                            class="text-xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                            Databases & ORM
+                        </h4>
                     </div>
-                    <hr class="border-slate-200 mb-6">
-                    <div class="flex flex-wrap gap-3">
+
+                    <!-- Divider Line -->
+                    <hr class="border-slate-200 dark:border-slate-800 mb-6 transition-colors">
+
+                    <!-- Tech Tags with Indigo Hover System -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition cursor-default">PostgreSQL</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400 transition duration-200 cursor-default">PostgreSQL</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition cursor-default">Redis</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400 transition duration-200 cursor-default">Redis</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition cursor-default">SQLAlchemy</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400 transition duration-200 cursor-default">SQLAlchemy</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition cursor-default">Celery</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400 transition duration-200 cursor-default">Celery</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition cursor-default">MongoDB</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400 transition duration-200 cursor-default">MongoDB</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 transition cursor-default">MySQL</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-indigo-50 hover:text-indigo-700 dark:hover:bg-indigo-950/50 dark:hover:text-indigo-400 transition duration-200 cursor-default">MySQL</span>
                     </div>
                 </div>
+
 
                 <!-- Card 3: DevOps & Clouds -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-sky-50 rounded-xl flex items-center justify-center text-sky-600">
+                    class="group relative bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                    <!-- Decorative Corner Glow Background (Sky variation) -->
+                    <div
+                        class="absolute -right-10 -top-10 w-24 h-24 bg-sky-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <!-- Icon Container with Sky Accent Animations -->
+                        <div
+                            class="w-12 h-12 bg-sky-50 dark:bg-sky-950/40 rounded-xl flex items-center justify-center text-sky-600 dark:text-sky-400 group-hover:scale-110 group-hover:bg-sky-600 group-hover:text-white transition-all duration-300">
                             <i data-lucide="cloud" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900 leading-tight">DevOps & Clouds</h4>
+                        <h4
+                            class="text-xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors group-hover:text-sky-600 dark:group-hover:text-sky-400">
+                            DevOps & Clouds
+                        </h4>
                     </div>
-                    <hr class="border-slate-200 mb-6">
-                    <div class="flex flex-wrap gap-3">
+
+                    <!-- Divider Line -->
+                    <hr class="border-slate-200 dark:border-slate-800 mb-6 transition-colors">
+
+                    <!-- Tech Tags with Sky Hover System -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">WSGI/Gunicorn</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">WSGI/Gunicorn</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">ASGI/Uvicorn</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">ASGI/Uvicorn</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">Docker</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">Docker</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">Nginx
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">Nginx
                             Web Server</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">AWS
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">AWS
                             Basics</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">Microservices</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">Microservices</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 transition cursor-default">CI/CD
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-sky-50 hover:text-sky-700 dark:hover:bg-sky-950/50 dark:hover:text-sky-400 transition duration-200 cursor-default">CI/CD
                             Basics</span>
                     </div>
                 </div>
+
 
                 <!-- Card 4: Libraries & Utilities -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-600">
+                    class="group relative bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                    <!-- Decorative Corner Glow Background (Amber variation) -->
+                    <div
+                        class="absolute -right-10 -top-10 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <!-- Icon Container with Amber Accent Animations -->
+                        <div
+                            class="w-12 h-12 bg-amber-50 dark:bg-amber-950/40 rounded-xl flex items-center justify-center text-amber-600 dark:text-amber-400 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
                             <i data-lucide="wrench" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900">Libraries & Utilities</h4>
+                        <h4
+                            class="text-xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors group-hover:text-amber-600 dark:group-hover:text-amber-400">
+                            Libraries & Utilities
+                        </h4>
                     </div>
-                    <hr class="border-slate-200 mb-6">
-                    <div class="flex flex-wrap gap-3">
+
+                    <!-- Divider Line -->
+                    <hr class="border-slate-200 dark:border-slate-800 mb-6 transition-colors">
+
+                    <!-- Tech Tags with Amber Hover System -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">Celery</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">Celery</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">NumPy</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">NumPy</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">Pandas</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">Pandas</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">JWT</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">JWT</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">OAuth</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">OAuth</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">Pydantic</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">Pydantic</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">PyTest</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">PyTest</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">PyAutoGUI</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">PyAutoGUI</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 transition cursor-default">OpenCV</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-amber-50 hover:text-amber-700 dark:hover:bg-amber-950/50 dark:hover:text-amber-400 transition duration-200 cursor-default">OpenCV</span>
                     </div>
                 </div>
 
+
                 <!-- Card 5: Automation -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-rose-50 rounded-xl flex items-center justify-center text-rose-600">
+                    class="group relative bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                    <!-- Decorative Corner Glow Background (Rose variation) -->
+                    <div
+                        class="absolute -right-10 -top-10 w-24 h-24 bg-rose-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <!-- Icon Container with Rose Accent Animations -->
+                        <div
+                            class="w-12 h-12 bg-rose-50 dark:bg-rose-950/40 rounded-xl flex items-center justify-center text-rose-600 dark:text-rose-400 group-hover:scale-110 group-hover:bg-rose-600 group-hover:text-white transition-all duration-300">
                             <i data-lucide="bot" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900">Automation</h4>
+                        <h4
+                            class="text-xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors group-hover:text-rose-600 dark:group-hover:text-rose-400">
+                            Automation
+                        </h4>
                     </div>
-                    <hr class="border-slate-200 mb-6">
-                    <div class="flex flex-wrap gap-3">
+
+                    <!-- Divider Line -->
+                    <hr class="border-slate-200 dark:border-slate-800 mb-6 transition-colors">
+
+                    <!-- Tech Tags with Rose Hover System -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">Selenium</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">Selenium</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">Playwright</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">Playwright</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">BeautifulSoup</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">BeautifulSoup</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">Web
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">Web
                             Scraping</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">Cron
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">Cron
                             Jobs</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">API
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">API
                             Integration</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">Task
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">Task
                             Automation</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 transition cursor-default">PyBuilder</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-950/50 dark:hover:text-rose-400 transition duration-200 cursor-default">PyBuilder</span>
                     </div>
                 </div>
 
                 <!-- Card 6: Version Control -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
+                    class="group relative bg-white dark:bg-slate-900 p-5 sm:p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+
+                    <!-- Decorative Corner Glow Background (Purple variation) -->
+                    <div
+                        class="absolute -right-10 -top-10 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500">
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-4 relative z-10">
+                        <!-- Icon Container with Purple Accent Animations -->
+                        <div
+                            class="w-12 h-12 bg-purple-50 dark:bg-purple-950/40 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
                             <i data-lucide="terminal-square" class="w-6 h-6"></i>
                         </div>
-                        <h4 class="text-xl font-bold text-slate-900">Version Control</h4>
+                        <h4
+                            class="text-xl font-bold text-slate-900 dark:text-slate-100 leading-tight transition-colors group-hover:text-purple-600 dark:group-hover:text-purple-400">
+                            Version Control
+                        </h4>
                     </div>
-                    <hr class="border-slate-200 mb-6">
-                    <div class="flex flex-wrap gap-3">
+
+                    <!-- Divider Line -->
+                    <hr class="border-slate-200 dark:border-slate-800 mb-6 transition-colors">
+
+                    <!-- Tech Tags with Purple Hover System -->
+                    <div class="flex flex-wrap gap-3 relative z-10">
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">Git</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">Git</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">GitHub</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">GitHub</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">Postman</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">Postman</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">Linux
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">Linux
                             Basics</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">CI/CD
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">CI/CD
                             Pipelines</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">System
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">System
                             Design Fundamentals</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">Collaboration</span>
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">Collaboration</span>
                         <span
-                            class="px-4 py-2 bg-slate-50 text-slate-700 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 transition cursor-default">Track
+                            class="px-4 py-2 bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-purple-50 hover:text-purple-700 dark:hover:bg-purple-950/50 dark:hover:text-purple-400 transition duration-200 cursor-default">Track
                             & Commits</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Expertise Section -->
-    <section id="expertise" class="py-24 bg-white section-gradient-patch">
+    <section id="expertise" class="py-14 sm:py-24 bg-white section-gradient-patch">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
                 <h2 class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">Backend Architecture
                     Expertise</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6">Future-proof your application with
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4 sm:mb-6">Future-proof your
+                    application with
                     flexible, scalable engineering.</h3>
-                <p class="text-slate-600 text-lg">Just like robust platforms automate testing, I automate backend
+                <p class="text-slate-600 text-base sm:text-lg">Just like robust platforms automate testing, I automate
+                    backend
                     efficiency. From high-concurrency APIs to serverless deployment.</p>
             </div>
 
             <!-- Feature Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
 
                 <!-- Card 1 -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
+                    class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
                     <div
                         class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-brand-600 mb-6 group-hover:bg-brand-600 group-hover:text-white transition-colors">
                         <i data-lucide="cpu" class="w-6 h-6"></i>
@@ -1740,7 +1740,7 @@
 
                 <!-- Card 2 -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
+                    class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
                     <div
                         class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
                         <i data-lucide="database" class="w-6 h-6"></i>
@@ -1754,7 +1754,7 @@
 
                 <!-- Card 3 -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
+                    class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
                     <div
                         class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                         <i data-lucide="cloud" class="w-6 h-6"></i>
@@ -1768,7 +1768,7 @@
 
                 <!-- Card 4 -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
+                    class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
                     <div
                         class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
                         <i data-lucide="workflow" class="w-6 h-6"></i>
@@ -1782,7 +1782,7 @@
 
                 <!-- Card 5 (AI Feature) -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
+                    class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
                     <div
                         class="w-12 h-12 bg-rose-100 rounded-lg flex items-center justify-center text-rose-600 mb-6 group-hover:bg-rose-600 group-hover:text-white transition-colors">
                         <i data-lucide="bot" class="w-6 h-6"></i>
@@ -1796,7 +1796,7 @@
 
                 <!-- Card 6 -->
                 <div
-                    class="bg-white p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
+                    class="bg-white p-5 sm:p-8 rounded-2xl border border-slate-200 feature-card-hover group cursor-pointer relative overflow-hidden">
                     <div
                         class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                         <i data-lucide="shield-check" class="w-6 h-6"></i>
@@ -1812,18 +1812,18 @@
         </div>
     </section>
 
-    <!-- NEW: System Design Section (Visual Proof of Competence) -->
-    <section id="architecture" class="py-24 bg-white border-b border-slate-100">
+
+    <section id="architecture" class="py-14 sm:py-24 bg-white border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
                 <h2 class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">System Architecture</h2>
-                <h3 class="text-3xl font-bold text-slate-900">Built for Scale & Resilience</h3>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Built for Scale & Resilience</h3>
                 <p class="text-slate-600 mt-4">Visualizing the typical event-driven microservices architecture I deploy
                     for high-load applications.</p>
             </div>
 
             <!-- Diagram Container -->
-            <div class="relative bg-slate-50 border border-slate-200 rounded-2xl p-8 md:p-12 overflow-hidden">
+            <div class="relative bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-8 md:p-12 overflow-hidden">
                 <!-- Background Grid -->
                 <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10">
                 </div>
@@ -1838,7 +1838,7 @@
                     <!-- Client -->
                     <div class="flex flex-col items-center">
                         <div
-                            class="w-24 h-16 bg-white rounded-lg border-2 border-slate-300 flex items-center justify-center shadow-sm">
+                            class="w-24 h-16 bg-white rounded-lg border-2 border-slate-700 flex items-center justify-center shadow-sm">
                             <i data-lucide="smartphone" class="w-6 h-6 text-slate-500"></i>
                             <i data-lucide="monitor" class="w-6 h-6 text-slate-500 ml-2"></i>
                         </div>
@@ -1852,10 +1852,10 @@
                     <!-- Load Balancer -->
                     <div class="flex flex-col items-center group">
                         <div
-                            class="w-32 h-32 bg-white rounded-full border-4 border-brand-100 flex flex-col items-center justify-center shadow-lg group-hover:border-brand-500 transition-colors">
+                            class="w-32 h-32 bg-white rounded-full border-4 border-brand-400 flex flex-col items-center justify-center shadow-lg group-hover:border-brand-500 transition-colors">
                             <i data-lucide="network" class="w-8 h-8 text-brand-600 mb-1"></i>
                             <span class="text-xs font-bold text-slate-700">Load Balancer</span>
-                            <span class="text-[10px] text-slate-400">NGINX</span>
+                            <span class="text-[14px] text-slate-700">NGINX</span>
                         </div>
                     </div>
 
@@ -1870,21 +1870,21 @@
                         <div class="space-y-4">
                             <!-- Service 1 -->
                             <div
-                                class="flex items-center gap-3 bg-brand-50 px-4 py-2 rounded-lg border border-brand-100">
-                                <i data-lucide="box" class="w-4 h-4 text-brand-600"></i>
-                                <span class="text-sm font-semibold text-brand-900">Auth Service</span>
+                                class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-lg border border-brand-100">
+                                <i data-lucide="box" class="w-4 h-4 text-brand-400"></i>
+                                <span class="text-sm font-semibold text-white">Auth Service</span>
                             </div>
                             <!-- Service 2 -->
                             <div
-                                class="flex items-center gap-3 bg-brand-50 px-4 py-2 rounded-lg border border-brand-100">
-                                <i data-lucide="box" class="w-4 h-4 text-brand-600"></i>
-                                <span class="text-sm font-semibold text-brand-900">Core API</span>
+                                class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-lg border border-brand-100">
+                                <i data-lucide="box" class="w-4 h-4 text-brand-400"></i>
+                                <span class="text-sm font-semibold text-white">Core API</span>
                             </div>
                             <!-- Service 3 -->
                             <div
-                                class="flex items-center gap-3 bg-brand-50 px-4 py-2 rounded-lg border border-brand-100">
-                                <i data-lucide="box" class="w-4 h-4 text-brand-600"></i>
-                                <span class="text-sm font-semibold text-brand-900">Worker</span>
+                                class="flex items-center gap-3 bg-slate-800 px-4 py-2 rounded-lg border border-brand-100">
+                                <i data-lucide="box" class="w-4 h-4 text-brand-400"></i>
+                                <span class="text-sm font-semibold text-white">Worker</span>
                             </div>
                         </div>
                     </div>
@@ -1896,18 +1896,18 @@
                     <!-- Data Layer -->
                     <div class="flex flex-col gap-4">
                         <div
-                            class="flex items-center gap-2 bg-indigo-50 px-4 py-3 rounded-lg border border-indigo-100 shadow-sm">
+                            class="flex items-center gap-2 bg-indigo-50 px-4 py-3 rounded-lg border border-indigo-500 shadow-sm">
                             <i data-lucide="database" class="w-5 h-5 text-indigo-600"></i>
                             <div class="text-left">
-                                <div class="text-xs font-bold text-indigo-900">PostgreSQL</div>
+                                <div class="text-xs font-bold text-indigo-700">PostgreSQL</div>
                                 <div class="text-[10px] text-indigo-500">Primary DB</div>
                             </div>
                         </div>
                         <div
-                            class="flex items-center gap-2 bg-red-50 px-4 py-3 rounded-lg border border-red-100 shadow-sm">
+                            class="flex items-center gap-2 bg-red-50 px-4 py-3 rounded-lg border border-red-500 shadow-sm">
                             <i data-lucide="zap" class="w-5 h-5 text-red-600"></i>
                             <div class="text-left">
-                                <div class="text-xs font-bold text-red-900">Redis</div>
+                                <div class="text-xs font-bold text-red-700">Redis</div>
                                 <div class="text-[10px] text-red-500">Cache / Queue</div>
                             </div>
                         </div>
@@ -1918,10 +1918,10 @@
         </div>
     </section>
 
-    <!-- NEW: API Playground Section -->
-    <section id="playground" class="py-24 bg-slate-900 text-white overflow-hidden relative">
+    <!-- API Playground Section -->
+    <section id="playground" class="py-14 sm:py-24 bg-slate-900 text-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
 
                 <!-- Description -->
                 <div>
@@ -1930,8 +1930,9 @@
                         <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                         Live Interactive Demo
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Test My Code. <br>Right Here, Right Now.</h2>
-                    <p class="text-slate-400 text-lg mb-8">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Test My Code. <br>Right Here,
+                        Right Now.</h2>
+                    <p class="text-slate-400 text-base sm:text-lg mb-6 sm:mb-8">
                         Experience the speed and structure of my API design. This interactive playground simulates a
                         real request to a Python/FastAPI backend protected by JWT auth.
                     </p>
@@ -2012,452 +2013,38 @@
     </section>
 
     <!-- Project Case Studies (Redesigned with Filters) -->
-    <section id="projects" class="py-24 bg-slate-50">
+    <section id="projects" class="py-14 sm:py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Header & Filters -->
-            <div class="text-center mb-16">
+            <div class="text-center mb-10 sm:mb-16">
                 <h2 class="text-brand-600 font-semibold tracking-wide uppercase text-sm mb-3">Featured Projects</h2>
-                <h3 class="text-4xl font-bold text-slate-900 mb-8">Development Stories</h3>
+                <h3 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 sm:mb-8">Development Stories</h3>
 
                 <!-- Filter Tabs -->
-                <div class="flex flex-wrap justify-center gap-4" id="project-filters">
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4" id="project-filters">
                     <button
-                        class="filter-btn active px-6 py-2.5 rounded-full bg-brand-600 text-white font-medium shadow-md transition-all hover:shadow-lg transform hover:-translate-y-0.5"
+                        class="filter-btn active px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-brand-600 text-white font-medium shadow-md transition-all hover:shadow-lg transform hover:-translate-y-0.5 text-sm"
                         data-filter="all">All</button>
                     <button
-                        class="filter-btn px-6 py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5"
+                        class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5 text-sm"
                         data-filter="backend">Backend</button>
                     <button
-                        class="filter-btn px-6 py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5"
+                        class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5 text-sm"
                         data-filter="ai">AI/ML</button>
                     <button
-                        class="filter-btn px-6 py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5"
+                        class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5 text-sm"
                         data-filter="automation">Automation</button>
                     <button
-                        class="filter-btn px-6 py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5"
+                        class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white text-slate-600 border border-slate-200 font-medium hover:border-brand-300 hover:text-brand-600 transition-all hover:shadow-md transform hover:-translate-y-0.5 text-sm"
                         data-filter="fullstack">Fullstack</button>
                 </div>
             </div>
 
-            <!-- Projects Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
 
-                <!-- 1. Jarvis AI (Theme: Violet) -->
-                <div class="project-card hidden-project bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="ai">
-
-                    <!-- Icon Container -->
-                    <div
-                        class="w-full h-48 bg-violet-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-violet-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="bot"
-                            class="project-icon w-16 h-16 text-violet-500 group-hover:text-violet-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-
-                    <!-- Title -->
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">Jarvis AI Assistant</h3>
-
-                    <!-- Description -->
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">
-                        An intelligent virtual assistant that performs tasks and automates workflows using advanced NLP
-                        models.
-                    </p>
-
-                    <!-- Tags -->
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-violet-50 text-violet-700 text-xs font-semibold rounded-full border border-violet-100">Python</span>
-                        <span
-                            class="px-3 py-1 bg-violet-50 text-violet-700 text-xs font-semibold rounded-full border border-violet-100">TensorFlow</span>
-                        <span
-                            class="px-3 py-1 bg-violet-50 text-violet-700 text-xs font-semibold rounded-full border border-violet-100">NLP</span>
-                    </div>
-
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. SmartDB Manager (Theme: Emerald) -->
-                <div class="project-card bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="backend">
-                    <div
-                        class="w-full h-48 bg-emerald-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="database"
-                            class="project-icon w-16 h-16 text-emerald-500 group-hover:text-emerald-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">SmartDB Manager</h3>
-                    <p class="project-desc text-zinc-600 mb-6 text-center leading-relaxed text-sm">
-                        A comprehensive database management system with intelligent query optimization and automated
-                        backup features.
-                    </p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8">
-                        <span
-                            class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-100">PostgreSQL</span>
-                        <span
-                            class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-100">Redis</span>
-                        <span
-                            class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-100">FastAPI</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 3. Automation Bot (Theme: Orange) -->
-                <div class="project-card bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="automation">
-                    <div
-                        class="w-full h-48 bg-orange-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="settings"
-                            class="project-icon w-16 h-16 text-orange-500 group-hover:text-orange-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">Automation Bot</h3>
-                    <p class="project-desc text-zinc-600 mb-6 text-center leading-relaxed text-sm">
-                        A versatile automation tool that streamlines repetitive tasks across multiple platforms with
-                        custom workflows.
-                    </p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8">
-                        <span
-                            class="px-3 py-1 bg-orange-50 text-orange-700 text-xs font-semibold rounded-full border border-orange-100">Python</span>
-                        <span
-                            class="px-3 py-1 bg-orange-50 text-orange-700 text-xs font-semibold rounded-full border border-orange-100">Selenium</span>
-                        <span
-                            class="px-3 py-1 bg-orange-50 text-orange-700 text-xs font-semibold rounded-full border border-orange-100">REST
-                            API</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 4. ScaleCom API (Theme: Indigo) -->
-                <div class="project-card bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="backend fullstack">
-
-                    <!-- Icon Container -->
-                    <div
-                        class="w-full h-48 bg-indigo-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="shopping-cart"
-                            class="project-icon w-16 h-16 text-indigo-500 group-hover:text-indigo-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-
-                    <!-- Title -->
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">ScaleCom API</h3>
-
-                    <!-- Description with balanced spacing -->
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">
-                        High-performance e-commerce backend handling 10k+ requests/sec with microservices architecture.
-                    </p>
-
-                    <!-- Tags -->
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-full border border-indigo-100">Django</span>
-                        <span
-                            class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-full border border-indigo-100">Docker</span>
-                        <span
-                            class="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-full border border-indigo-100">AWS</span>
-                    </div>
-
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 5. Nexus Chat Engine (Category: Fullstack) - VISIBLE -->
-                <div class="project-card hidden-project bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="fullstack backend">
-                    <div
-                        class="w-full h-48 bg-emerald-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-emerald-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="message-square"
-                            class="project-icon w-16 h-16 text-emerald-500 group-hover:text-emerald-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">Nexus Chat Engine</h3>
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">A distributed
-                        websocket server supporting 1M+ concurrent connections with persistent message history.</p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-100">WebSockets</span>
-                        <span
-                            class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-100">Redis</span>
-                        <span
-                            class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full border border-emerald-100">Go/Python</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 6. Cloud Transcoder (Category: Backend/Automation) - VISIBLE -->
-                <div class="project-card hidden-project bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="backend automation">
-                    <div
-                        class="w-full h-48 bg-orange-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-orange-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="video"
-                            class="project-icon w-16 h-16 text-orange-500 group-hover:text-orange-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">Cloud Transcoder</h3>
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">Event-driven
-                        serverless architecture that automatically processes and transcodes high-res video uploads.</p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-orange-50 text-orange-700 text-xs font-semibold rounded-full border border-orange-100">AWS
-                            Lambda</span>
-                        <span
-                            class="px-3 py-1 bg-orange-50 text-orange-700 text-xs font-semibold rounded-full border border-orange-100">S3</span>
-                        <span
-                            class="px-3 py-1 bg-orange-50 text-orange-700 text-xs font-semibold rounded-full border border-orange-100">FFmpeg</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 7. LogSentinel (Backend) - HIDDEN -->
-                <div class="project-card hidden-project bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-zinc-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="backend">
-                    <div
-                        class="w-full h-48 bg-zinc-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-zinc-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="file-text"
-                            class="project-icon w-16 h-16 text-zinc-500 group-hover:text-zinc-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">LogSentinel</h3>
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">Distributed log
-                        aggregation system processing 500GB+ daily logs with real-time alerting and visualization.</p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-zinc-50 text-zinc-700 text-xs font-semibold rounded-full border border-zinc-100">Python</span>
-                        <span
-                            class="px-3 py-1 bg-zinc-50 text-zinc-700 text-xs font-semibold rounded-full border border-zinc-100">Kafka</span>
-                        <span
-                            class="px-3 py-1 bg-zinc-50 text-zinc-700 text-xs font-semibold rounded-full border border-zinc-100">Elasticsearch</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 8. TaskMaster Pro (Automation) - HIDDEN -->
-                <div class="project-card hidden-project bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-amber-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="automation">
-                    <div
-                        class="w-full h-48 bg-amber-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-amber-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="clock"
-                            class="project-icon w-16 h-16 text-amber-500 group-hover:text-amber-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">TaskMaster Pro</h3>
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">Advanced cron job
-                        manager and task scheduler with retry logic, dependency management, and dashboard monitoring.
-                    </p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full border border-amber-100">Python</span>
-                        <span
-                            class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full border border-amber-100">Celery</span>
-                        <span
-                            class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full border border-amber-100">Redis</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 9. InventoryFlow (Fullstack) - HIDDEN -->
-                <div class="project-card hidden-project bg-white rounded-3xl p-8 border border-zinc-200 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col group"
-                    data-category="fullstack backend">
-                    <div
-                        class="w-full h-48 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-100 transition-colors relative overflow-hidden">
-                        <i data-lucide="package"
-                            class="project-icon w-16 h-16 text-blue-500 group-hover:text-blue-600 transition-all duration-300 group-hover:scale-110"></i>
-                    </div>
-                    <h3 class="project-title text-2xl font-bold text-zinc-900 mb-3 text-center">InventoryFlow</h3>
-                    <p class="project-desc text-zinc-600 mb-8 text-center leading-relaxed text-sm">Real-time inventory
-                        management system with QR code scanning, low-stock alerts, and predictive analytics.</p>
-                    <div class="project-tags flex flex-wrap justify-center gap-2 mb-8 mt-auto">
-                        <span
-                            class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full border border-blue-100">React</span>
-                        <span
-                            class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full border border-blue-100">FastAPI</span>
-                        <span
-                            class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full border border-blue-100">PostgreSQL</span>
-                    </div>
-
-                    <!-- Updated Buttons -->
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-2 w-full mt-auto">
-                        <a href="https://github.com" target="_blank"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-slate-300 text-slate-700 font-semibold hover:border-slate-800 hover:text-slate-900 hover:bg-slate-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="github"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">View Code</span>
-                        </a>
-                        <a href="#"
-                            class="project-demo-link group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl bg-brand-600 text-white font-semibold hover:bg-brand-700 shadow-sm hover:shadow-md hover:shadow-brand-500/30 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="external-link"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Live Demo</span>
-                        </a>
-                        <button onclick="openModal(this)"
-                            class="group flex items-center justify-center gap-1.5 py-2 sm:py-2.5 rounded-xl border-2 border-purple-300 text-purple-600 font-semibold hover:border-purple-600 hover:bg-purple-50 transition-all duration-300 text-[10px] sm:text-xs">
-                            <i data-lucide="file-text"
-                                class="w-3.5 h-3.5 shrink-0 group-hover:scale-110 transition-transform"></i>
-                            <span class="whitespace-nowrap">Case Study</span>
-                        </button>
-                    </div>
-                </div>
-
+            <!-- Projects Grid — Cards are auto-generated from projects.js -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8" id="projects-grid">
+                <!-- Rendered by projects.js → renderProjects() -->
             </div>
 
             <!-- View More Action Button -->
@@ -2550,10 +2137,10 @@
         </div>
     </div>
 
-    <!-- NEW: Dedicated Projects Page View (Overlay) -->
-    <!-- Changed z-index to 40 to sit UNDER navbar (z-50) but OVER content. Added pt-24 for navbar clearance. -->
+    <!-- Projects Full-View Overlay -->
     <div id="projects-view"
-        class="fixed inset-0 bg-slate-50 z-40 overflow-y-auto hidden transform transition-transform duration-300 pt-24">
+        class="fixed inset-0 bg-slate-50 z-40 overflow-y-auto hidden transform transition-transform duration-300 pt-24"
+        style="overscroll-behavior: contain; -webkit-overflow-scrolling: touch;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Header -->
             <div class="text-center mb-8">
@@ -2590,21 +2177,21 @@
         </div>
     </div>
 
-    <!-- Call to Action (Contact) - UPDATED FROM UPLOADED FILE -->
-    <section id="contact" class="py-24 bg-slate-50">
+    <!-- Contact Section -->
+    <section id="contact" class="py-14 sm:py-24 bg-slate-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Get In Touch</h2>
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-4">Get In Touch</h2>
                 <p class="text-slate-600 max-w-2xl mx-auto">Feel free to reach out for collaborations or just a friendly
                     hello</p>
             </div>
 
-            <!-- Changed items-start to items-stretch for equal height -->
-            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+            <!-- Grid: single col on mobile, 2 col on lg -->
+            <div class="grid lg:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Contact Form Card -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 h-full flex flex-col">
-                    <form id="contactForm" class="space-y-6 flex-grow flex flex-col">
+                <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-8 border border-slate-100 flex flex-col min-w-0">
+                    <form id="contactForm" class="space-y-5 flex-grow flex flex-col">
                         <!-- Web3Forms Technical Fields -->
                         <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
@@ -2630,13 +2217,12 @@
                         </div>
                         <div class="flex-grow flex flex-col">
                             <label for="message" class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
-                            <!-- Added flex-grow to textarea container and h-full to textarea to fill space -->
                             <textarea id="message" name="message" placeholder="Enter your message"
-                                class="w-full h-full min-h-[160px] px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition text-slate-700 bg-slate-50 focus:bg-white resize-none"
+                                class="w-full flex-grow min-h-[140px] px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition text-slate-700 bg-slate-50 focus:bg-white resize-none"
                                 required></textarea>
                         </div>
                         <button type="submit" id="submitBtn"
-                            class="w-full bg-gradient-to-b from-brand-600 to-brand-600 hover:from-brand-700 hover:to-brand-500 text-white font-bold py-3.5 rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 mt-auto flex items-center justify-center gap-2">
+                            class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 mt-auto flex items-center justify-center gap-2">
                             <span>Send Message</span>
                             <i data-lucide="send" class="w-4 h-4"></i>
                         </button>
@@ -2644,72 +2230,82 @@
                 </div>
 
                 <!-- Info Wrapper (Right Column) -->
-                <div class="flex flex-col gap-6 h-full">
+                <div class="flex flex-col gap-5 sm:gap-6 min-w-0">
                     <!-- Info Card -->
-                    <div class="bg-white rounded-2xl shadow-xl p-8 border border-slate-100 flex-1">
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Let's Connect</h3>
-                        <p class="text-slate-600 mb-8 leading-relaxed">I'm always open to discussing new opportunities,
+                    <div class="bg-white rounded-2xl shadow-xl p-5 sm:p-8 border border-slate-100 flex-1 min-w-0">
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-3 sm:mb-4">Let's Connect</h3>
+                        <p class="text-slate-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">I'm always open to
+                            discussing new opportunities,
                             interesting projects, or potential collaborations.</p>
 
-                        <div class="space-y-6">
+                        <div class="space-y-4 sm:space-y-6">
                             <!-- Email -->
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-3 sm:gap-4 min-w-0">
                                 <div
-                                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white shadow-lg shadow-purple-500/30">
-                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                    class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white shadow-lg shadow-purple-500/30 shrink-0">
+                                    <i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
-                                <div>
+                                <div class="min-w-0">
                                     <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Email</h4>
-                                    <p class="text-slate-600">gauravsinghpanwar81@gmail.com</p>
+                                    <p class="text-slate-600 text-sm truncate">gauravsinghpanwar81@gmail.com</p>
                                 </div>
                             </div>
 
                             <!-- Phone -->
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-3 sm:gap-4">
                                 <div
-                                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
-                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                    class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30 shrink-0">
+                                    <i data-lucide="phone" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Phone</h4>
-                                    <p class="text-slate-600">+91 xxxxxxxxxx</p>
+                                    <p class="text-slate-600 text-sm">+91 xxxxxxxxxx</p>
                                 </div>
                             </div>
 
                             <!-- Location -->
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-center gap-3 sm:gap-4">
                                 <div
-                                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/30">
-                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                    class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-rose-400 to-rose-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/30 shrink-0">
+                                    <i data-lucide="map-pin" class="w-5 h-5 sm:w-6 sm:h-6"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-sm font-bold text-slate-900 uppercase tracking-wide">Location</h4>
-                                    <p class="text-slate-600">Dehradun, Uttarakhand, India</p>
+                                    <p class="text-slate-600 text-sm">Dehradun, Uttarakhand, India</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Social Links Container -->
-                        <div class="w-full max-w-2xl mt-8 pt-8 border-t border-slate-100 flex gap-4">
-
+                        <!-- Social Links - responsive, no overflow -->
+                        <div class="w-full mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-100 flex gap-3">
                             <a href="https://github.com/gauravpanwar08" target="_blank"
-                                class="flex-1 h-10 px-4 rounded-lg bg-[#24292e] text-white flex items-center justify-center gap-2 font-medium hover:bg-black transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-400/50 whitespace-nowrap">
-                                <i data-lucide="github" class="w-5 h-5 flex-shrink-0"></i>
-                                <span>GitHub</span>
+                                class="flex-1 h-10 rounded-lg bg-[#24292e] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-black transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4 shrink-0">
+                                    <path
+                                        d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                                    <path d='M9 18c-4.51 2-5-2-7-2' />
+                                </svg>
+                                <span class="truncate">GitHub</span>
                             </a>
-
                             <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
-                                class="flex-1 h-10 px-4 rounded-lg bg-[#0A66C2] text-white flex items-center justify-center gap-2 font-medium hover:bg-[#004182] transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/30 whitespace-nowrap">
-                                <i data-lucide="linkedin" class="w-5 h-5 flex-shrink-0"></i>
-                                <span>LinkedIn</span>
+                                class="flex-1 h-10 rounded-lg bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-[#004182] transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4 shrink-0">
+                                    <path
+                                        d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
+                                    <rect width='4' height='12' x='2' y='9' />
+                                    <circle cx='4' cy='4' r='2' />
+                                </svg>
+                                <span class="truncate">LinkedIn</span>
                             </a>
-
-                            <a href="mailto:contact@gauravconsole.com"
-                                class="flex-1 h-10 px-4 rounded-lg bg-[#EA4335] text-white flex items-center justify-center gap-2 font-medium hover:bg-[#D93025] transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/30 whitespace-nowrap">
-                                <i data-lucide="mail" class="w-5 h-5 flex-shrink-0"></i>
-                                <span>Email</span>
+                            <a href="mailto:gauravsinghpanwar81@gmail.com"
+                                class="flex-1 h-10 rounded-lg bg-[#EA4335] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-[#D93025] transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
+                                <i data-lucide="mail" class="w-4 h-4 shrink-0"></i>
+                                <span class="truncate">Email</span>
                             </a>
-
                         </div>
                     </div>
 
@@ -2736,7 +2332,7 @@
 
                             <!-- Static Location Text -->
                             <span
-                                class="text-sm sm:text-base font-bold tracking-wide text-slate-900 bg-white/95 px-5 py-1.5 rounded-full backdrop-blur-md shadow-lg mb-2 border border-slate-100">
+                                class="text-xs sm:text-sm font-bold tracking-wide text-slate-900 bg-white/95 px-3 sm:px-5 py-1.5 rounded-full backdrop-blur-md shadow-lg mb-2 border border-slate-100 text-center">
                                 Dehradun, Uttarakhand, India
                             </span>
 
@@ -2929,7 +2525,8 @@
                 <a href="#contact" onclick="handleNavClick(event,'contact')"
                     class="hover:text-indigo-300 transition">Contact</a>
                 <span style="color:rgba(255,255,255,0.15);">·</span>
-                <a href="#about" download class="hover:text-indigo-300 transition">Resume</a>
+                <a href="#resume-preview" onclick="handleNavClick(event,'resume-preview')"
+                    class="hover:text-indigo-300 transition">Resume</a>
             </div>
             <div class="w-10 h-0.5 mx-auto my-4 rounded-full"
                 style="background:linear-gradient(90deg,#818cf8,#e879f9);"></div>
@@ -2939,12 +2536,24 @@
                 <a href="https://github.com/gauravpanwar08" target="_blank"
                     class="w-9 h-9 rounded-lg flex items-center justify-center transition hover:scale-110"
                     style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);">
-                    <i data-lucide="github" class="w-4 h-4" style="color:rgba(255,255,255,0.7);"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"
+                        style="color:rgba(255,255,255,0.7);">
+                        <path
+                            d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                        <path d='M9 18c-4.51 2-5-2-7-2' />
+                    </svg>
                 </a>
-                <a href="https://linkedin.com/in/gauravpanwar08" target="_blank"
+                <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
                     class="w-9 h-9 rounded-lg flex items-center justify-center transition hover:scale-110"
                     style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);">
-                    <i data-lucide="linkedin" class="w-4 h-4" style="color:rgba(255,255,255,0.7);"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"
+                        style="color:rgba(255,255,255,0.7);">
+                        <path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
+                        <rect width='4' height='12' x='2' y='9' />
+                        <circle cx='4' cy='4' r='2' />
+                    </svg>
                 </a>
                 <a href="mailto:gauravsinghpanwar81@gmail.com"
                     class="w-9 h-9 rounded-lg flex items-center justify-center transition hover:scale-110"
@@ -2954,7 +2563,6 @@
             </div>
 
             <!-- Bottom bar -->
-            <!-- Edge-to-Edge Bottom Bar Wrapper -->
             <div class="mt-12 pt-6 pb-0 w-[100vw] relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"
                 style="border-top:1px solid rgba(255,255,255,0.08);">
 
@@ -2977,554 +2585,11 @@
         </div>
     </footer>
 
-    <!-- Scripts for Interactions -->
+    <!-- Scripts: load order matters — projects.js → lucide → main.js -->
+    <script src="js/projects.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            lucide.createIcons();
+    <script src="js/main.js"></script>
 
-            // Floating Tech Particles
-            const particleContainer = document.getElementById('hero-particles');
-            if (particleContainer) {
-                const icons = ['🐍', '⚡', '🔧', '🗄️', '☁️', '🤖', '🔗', '📡', '🛡️', '🚀', '💡', '⚙️', '🧩', '📦', '🔑'];
-                const count = 18;
-                for (let k = 0; k < count; k++) {
-                    const p = document.createElement('span');
-                    p.className = 'hero-particle';
-                    p.textContent = icons[k % icons.length];
-                    const size = 16 + Math.random() * 14;
-                    p.style.cssText = `
-                font-size:${size}px;
-                left:${Math.random() * 100}%;
-                animation-duration:${10 + Math.random() * 14}s;
-                animation-delay:${Math.random() * 12}s;
-                opacity:0;
-            `;
-                    particleContainer.appendChild(p);
-                }
-            }
-        });
-        // Typewriter Effect
-        const words = [
-            "Scalable APIs",
-            "Robust Backends",
-            "Cloud Systems",
-            "Microservices",
-            "High-Performance Systems",
-            "AI-Driven Architecture",
-            "Smart-Automation & Integrations"
-        ];
-        let i = 0;
-        let j = 0;
-        let isDeleting = false;
-
-        function typeWriter() {
-            const currentWord = words[i];
-            const heading = document.getElementById("typewriter");
-
-            if (isDeleting) {
-                heading.textContent = currentWord.substring(0, j);
-                j--;
-                if (j < 0) {
-                    isDeleting = false;
-                    i++;
-                    if (i >= words.length) i = 0;
-                    j = 0; // Reset j for next word
-                    setTimeout(typeWriter, 500); // Wait before typing next
-                    return;
-                }
-            } else {
-                heading.textContent = currentWord.substring(0, j + 1);
-                j++;
-                if (j === currentWord.length) {
-                    isDeleting = true;
-                    setTimeout(typeWriter, 1000); // Wait before deleting
-                    return;
-                }
-            }
-
-            const speed = isDeleting ? 50 : 100;
-            setTimeout(typeWriter, speed);
-        }
-
-        // Start the effect
-        typeWriter();
-
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                navbar.classList.add('shadow-sm');
-            } else {
-                navbar.classList.remove('shadow-sm');
-            }
-        });
-
-        // Smart Navigation Handler
-        function handleNavClick(event, targetId) {
-            if (event) event.preventDefault();
-
-            const projectsView = document.getElementById('projects-view');
-            const isProjectsOpen = !projectsView.classList.contains('hidden');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            // Close Mobile Menu if open
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-
-            // Always close project view overlay if open when navigating via navbar
-            if (isProjectsOpen) {
-                closeProjectsView();
-                // Small timeout to allow overlay to close before scrolling might be smoother, 
-                // but direct scroll usually works well with the view hiding immediately.
-            }
-
-            // Scroll Logic
-            if (targetId === 'home') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                const element = document.getElementById(targetId);
-                if (element) {
-                    // Offset for navbar height
-                    const navbarHeight = 80;
-                    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({
-                        top: elementPosition - navbarHeight,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-
-            // Manually update link state
-            updateActiveLink(targetId);
-        }
-
-        // Active Link Highlighter
-        function updateActiveLink(activeId) {
-            const links = document.querySelectorAll('.nav-link, .nav-link-mobile');
-
-            links.forEach(link => {
-                const target = link.getAttribute('data-target');
-                if (target === activeId) {
-                    link.classList.add('text-brand-600', 'font-bold');
-                    link.classList.remove('text-slate-600');
-                } else {
-                    link.classList.remove('text-brand-600', 'font-bold');
-                    link.classList.add('text-slate-600');
-                }
-            });
-        }
-
-        // ScrollSpy for Main Page
-        const observerOptions = {
-            root: null,
-            rootMargin: '-100px 0px -50% 0px',
-            threshold: 0.1
-        };
-
-        const observerCallback = (entries) => {
-            const projectsView = document.getElementById('projects-view');
-            // Only update active links if we are NOT on the projects overlay
-            if (!projectsView.classList.contains('hidden')) return;
-
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    updateActiveLink(entry.target.id);
-                }
-            });
-
-            // Handle Home separately since it's top of page
-            if (window.scrollY < 100 && projectsView.classList.contains('hidden')) {
-                updateActiveLink('home');
-            }
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-        // Add observation for new sections
-        document.querySelectorAll('section[id]').forEach(section => {
-            observer.observe(section);
-        });
-
-
-        // Robust Project Filtering Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // 1. Visual Update: Reset all buttons to INACTIVE state
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-brand-600', 'text-white', 'shadow-md', 'hover:bg-brand-700');
-                        b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'hover:border-brand-300', 'hover:text-brand-600');
-                    });
-
-                    // 2. Visual Update: Set clicked button to ACTIVE state
-                    // We explicitly remove the 'hover:text-brand-600' class here to prevent blue-on-blue text
-                    btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'hover:border-brand-300', 'hover:text-brand-600');
-                    btn.classList.add('bg-brand-600', 'text-white', 'shadow-md', 'hover:bg-brand-700');
-
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    // 3. Filter Logic
-                    projectCards.forEach(card => {
-                        // Ignore hidden projects until they are revealed
-                        if (card.classList.contains('hidden-project')) return;
-
-                        // Split categories into an array for strict matching
-                        const categories = card.getAttribute('data-category').split(' ');
-
-                        if (filterValue === 'all' || categories.includes(filterValue)) {
-                            card.classList.remove('hidden');
-                            card.classList.add('flex'); // Restore flex layout
-
-                            // Optional: Add a subtle animation to show content changed
-                            card.classList.remove('opacity-0', 'scale-95');
-                            card.classList.add('opacity-100', 'scale-100');
-                        } else {
-                            card.classList.add('hidden');
-                            card.classList.remove('flex'); // Remove flex so it hides properly
-
-                            card.classList.remove('opacity-100', 'scale-100');
-                            card.classList.add('opacity-0', 'scale-95');
-                        }
-                    });
-                });
-            });
-        });
-
-        // NEW: Client-Side Routing & Projects View Logic
-        function renderProjectsView() {
-            const view = document.getElementById('projects-view');
-            const container = document.getElementById('all-projects-container');
-            const sourceGrid = document.getElementById('projects-grid');
-
-            // Populate if empty (Lazy Load)
-            if (container.children.length === 0) {
-                // Clone the main grid
-                const clone = sourceGrid.cloneNode(true);
-                clone.id = 'projects-grid-full';
-
-                // Reveal ALL hidden projects in the clone
-                const hiddenItems = clone.querySelectorAll('.hidden-project');
-                hiddenItems.forEach(item => {
-                    item.classList.remove('hidden-project');
-                    item.classList.add('flex'); // Restore flex display
-                });
-
-                // Append to view
-                container.appendChild(clone);
-
-                // Setup Filters for Overlay
-                setupOverlayFilters();
-
-                // Re-initialize icons for the new content
-                lucide.createIcons();
-            }
-
-            // Show View
-            view.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Disable background scroll
-            view.scrollTop = 0; // Scroll to top
-
-            // Force highlighting "Projects"
-            updateActiveLink('projects');
-
-            // Reset filter to 'All' every time the view is opened
-            const allFilterBtn = document.querySelector('#overlay-filters .overlay-filter-btn[data-filter="all"]');
-            if (allFilterBtn) {
-                allFilterBtn.click();
-            }
-        }
-
-        function setupOverlayFilters() {
-            const filterBtns = document.querySelectorAll('.overlay-filter-btn');
-            const projectsGrid = document.getElementById('projects-grid-full');
-
-            if (!projectsGrid) return;
-
-            const projectCards = projectsGrid.querySelectorAll('.project-card');
-
-            // Define styles for Active and Inactive states
-            const activeClasses = ['bg-brand-600', 'text-white', 'shadow-sm'];
-            const inactiveClasses = ['bg-white', 'text-slate-600', 'border', 'border-slate-200', 'hover:border-brand-300', 'hover:text-brand-600'];
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // 1. Reset ALL buttons to Inactive state
-                    filterBtns.forEach(b => {
-                        b.classList.remove(...activeClasses);
-                        b.classList.add(...inactiveClasses);
-                    });
-
-                    // 2. Set CLICKED button to Active state
-                    // Importantly: Remove the hover text color class so active button text stays white
-                    btn.classList.remove(...inactiveClasses);
-                    btn.classList.add(...activeClasses);
-
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    // Filter Logic
-                    projectCards.forEach(card => {
-                        const categories = card.getAttribute('data-category').split(' ');
-
-                        if (filterValue === 'all' || categories.includes(filterValue)) {
-                            card.classList.remove('hidden');
-                            card.classList.add('flex');
-
-                            // Reset Animation
-                            card.classList.remove('opacity-0', 'scale-95');
-                            card.classList.add('opacity-100', 'scale-100');
-                        } else {
-                            card.classList.add('hidden');
-                            card.classList.remove('flex');
-
-                            card.classList.remove('opacity-100', 'scale-100');
-                            card.classList.add('opacity-0', 'scale-95');
-                        }
-                    });
-                });
-            });
-        }
-
-        function navigateToProjects() {
-            renderProjectsView();
-            // Update URL (Client-side routing)
-            window.history.pushState({ page: 'projects' }, 'Projects', '#projects');
-        }
-
-        function closeProjectsView() {
-            // Trigger browser back to handle history state
-            window.history.back();
-        }
-
-        // Handle Browser Back Button & Initial State
-        window.addEventListener('popstate', (event) => {
-            const view = document.getElementById('projects-view');
-            if (event.state && event.state.page === 'projects') {
-                renderProjectsView();
-            } else {
-                view.classList.add('hidden');
-                document.body.style.overflow = ''; // Enable background scroll
-
-                // Recalculate ScrollSpy state
-                observerCallback([], observer);
-            }
-        });
-
-        // Modal Logic
-        const modal = document.getElementById('caseStudyModal');
-        const modalTitle = document.getElementById('modal-project-title');
-        const modalDesc = document.getElementById('modal-desc');
-        const modalIconContainer = document.getElementById('modal-icon-container');
-        const modalTags = document.getElementById('modal-tags');
-        const modalDemoBtn = document.getElementById('modal-demo-btn'); // New selection
-
-        function openModal(buttonElement) {
-            // Find the parent card
-            const card = buttonElement.closest('.project-card');
-
-            // Extract Data from Card
-            const title = card.querySelector('.project-title').innerText;
-            const desc = card.querySelector('.project-desc').innerText;
-            const iconHtml = card.querySelector('.project-icon').outerHTML;
-            const tagsHtml = card.querySelector('.project-tags').innerHTML;
-
-            // Extract Demo Link (Robust check)
-            const demoLinkEl = card.querySelector('.project-demo-link');
-            const demoUrl = demoLinkEl ? demoLinkEl.href : '#';
-
-            // Populate Modal
-            modalTitle.innerText = title;
-            modalDesc.innerText = desc;
-            modalIconContainer.innerHTML = iconHtml;
-            modalTags.innerHTML = tagsHtml; // Clone tags
-
-            // Set Modal Demo Button Link
-            modalDemoBtn.href = demoUrl;
-
-            // Show Modal & Disable Background Scroll
-            modal.classList.remove('hidden');
-            document.body.classList.add('modal-open'); // Using class for cleaner CSS control
-
-            // Re-render icons in modal
-            lucide.createIcons();
-        }
-
-        function closeModal() {
-            modal.classList.add('hidden');
-            document.body.classList.remove('modal-open'); // Restore Background Scroll
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function (event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
-
-        // API Playground Demo
-        function runDemo() {
-            const selector = document.getElementById('endpoint-selector');
-            const output = document.getElementById('json-output');
-            const loader = document.getElementById('loader');
-            const status = document.getElementById('response-status');
-
-            const endpoint = selector.value;
-
-            // Show Loader
-            loader.classList.remove('hidden');
-            output.innerText = "";
-            status.innerText = "";
-
-            // Simulate Network Delay
-            setTimeout(() => {
-                loader.classList.add('hidden');
-                status.innerText = "Status: 200 OK • Time: 45ms";
-
-                let data = {};
-
-                if (endpoint === 'users') {
-                    data = {
-                        "id": "usr_82910",
-                        "username": "hiring_manager",
-                        "role": "admin",
-                        "permissions": ["read", "write", "deploy"],
-                        "last_login": new Date().toISOString()
-                    };
-                } else if (endpoint === 'analytics') {
-                    data = {
-                        "total_requests": 14502,
-                        "cache_hit_rate": "94.5%",
-                        "avg_latency": "32ms",
-                        "active_nodes": 5
-                    };
-                } else {
-                    data = {
-                        "status": "operational",
-                        "database": "connected",
-                        "redis": "connected",
-                        "version": "v2.4.1"
-                    };
-                }
-
-                output.innerText = JSON.stringify(data, null, 2);
-            }, 800);
-        }
-
-        // Contact Form Integration
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const form = e.target;
-            const btn = document.getElementById('submitBtn');
-            const originalBtnContent = btn.innerHTML;
-
-            // Basic Validation
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            // Email Regex
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!name || !email || !message) {
-                showToast('Please fill in all required fields.', 'error');
-                return;
-            }
-
-            if (!emailRegex.test(email)) {
-                showToast('Please enter a valid email address.', 'error');
-                return;
-            }
-
-            // Disable Button & Show Loading State
-            btn.disabled = true;
-            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Sending...`;
-            lucide.createIcons(); // Re-init icons for the loader
-
-            // Prepare Data for Web3Forms
-            const formData = new FormData(form);
-            const object = Object.fromEntries(formData);
-            const json = JSON.stringify(object);
-
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: json
-            })
-                .then(async (response) => {
-                    let json = await response.json();
-                    if (response.status == 200) {
-                        showToast('Message sent successfully!', 'success');
-                        form.reset();
-                    } else {
-                        console.log(response);
-                        showToast(json.message || 'Something went wrong.', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    showToast('Failed to send message. Please try again.', 'error');
-                })
-                .finally(() => {
-                    // Reset Button
-                    btn.disabled = false;
-                    btn.innerHTML = originalBtnContent;
-                    lucide.createIcons(); // Re-init icons
-                });
-        });
-
-        // Toast Notification System
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
-
-            // Tailwind classes for the toast
-            const baseClasses = "fixed bottom-5 right-5 px-6 py-4 rounded-xl shadow-2xl transform transition-all duration-300 translate-y-10 opacity-0 z-[60] flex items-center gap-3 font-medium min-w-[300px]";
-            const typeClasses = type === 'success'
-                ? "bg-white border-l-4 border-emerald-500 text-slate-800"
-                : "bg-white border-l-4 border-red-500 text-slate-800";
-
-            const icon = type === 'success'
-                ? `<i data-lucide="check-circle" class="w-5 h-5 text-emerald-500"></i>`
-                : `<i data-lucide="alert-circle" class="w-5 h-5 text-red-500"></i>`;
-
-            toast.className = `${baseClasses} ${typeClasses}`;
-            toast.innerHTML = `
-                ${icon}
-                <span>${message}</span>
-            `;
-
-            document.body.appendChild(toast);
-            lucide.createIcons();
-
-            // Animate In
-            requestAnimationFrame(() => {
-                toast.classList.remove('translate-y-10', 'opacity-0');
-            });
-
-            // Remove after 3 seconds
-            setTimeout(() => {
-                toast.classList.add('translate-y-10', 'opacity-0');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
-            }, 3000);
-        }
-
-    </script>
 </body>
 
 </html>

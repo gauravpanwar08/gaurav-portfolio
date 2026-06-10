@@ -1,0 +1,1428 @@
+/* =============================================================
+   styles.css — Gaurav Singh Panwar - Portfolio
+   Custom CSS (dark mode, animations, components, utilities)
+   Tailwind utility classes are handled by tailwind.config.js cdn
+================================================================== */
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+a[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 1;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.feature-card-hover {
+  transition: all 0.3s ease;
+}
+
+.feature-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #bfdbfe;
+}
+
+/* Terminal Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Hidden Projects Style */
+.hidden-project {
+  display: none !important;
+}
+
+/* Open-to-work sticker */
+.sticker-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eef2ff;
+  border: 1.5px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 4px 10px 4px 6px;
+}
+
+/* Mobile drawer transition */
+#mobile-drawer {
+  will-change: transform;
+}
+
+/* Touch target minimum size for mobile nav */
+@media (max-width: 768px) {
+  .drawer-nav-link {
+    min-height: 44px;
+  }
+
+  /* Fix hero section text overflow on small screens */
+  .hero-gradient-text {
+    word-break: break-word;
+  }
+
+  /* Better tap highlight removal */
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Education section mobile */
+  #education .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Modal padding on mobile */
+  #caseStudyModal > div {
+    padding: 16px;
+  }
+
+  /* Toast width on mobile */
+  .toast-mobile {
+    min-width: unset;
+    width: calc(100vw - 32px);
+    right: 16px;
+    left: 16px;
+  }
+}
+
+/* GLOBAL: prevent any element from causing horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Contact section: ensure no child overflows */
+#contact * {
+  min-width: 0;
+}
+
+.dot-live-hero {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: dotblink 1.4s ease-in-out infinite;
+}
+
+.rocket-anim-hero {
+  animation: rocketbounce 1.8s ease-in-out infinite;
+  display: inline-block;
+  font-size: 16px;
+}
+
+@keyframes dotblink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+  }
+
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes rocketbounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-25deg);
+  }
+
+  40% {
+    transform: translateY(-5px) rotate(-25deg);
+  }
+
+  60% {
+    transform: translateY(-3px) rotate(-25deg);
+  }
+}
+
+/* Footer art animations */
+@keyframes ftsnake {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+@keyframes ftblink {
+  0%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes fttongue {
+  0%,
+  60%,
+  100% {
+    transform: scaleX(1);
+  }
+
+  80% {
+    transform: scaleX(1.5);
+  }
+}
+
+@keyframes ftleaf {
+  0%,
+  100% {
+    transform: rotate(-8deg);
+  }
+
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes ftcup {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-12px);
+  }
+
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes ftsteam1 {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+@keyframes ftsteam2 {
+  0% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-24px);
+    opacity: 0;
+  }
+}
+
+@keyframes ftspark {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--ftdx), var(--ftdy)) scale(0);
+  }
+}
+
+/* Floating particles */
+.hero-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: particlefloat linear infinite;
+  opacity: 0;
+  font-size: 22px;
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.3));
+}
+
+@keyframes particlefloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0.6;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-120px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Gradient section patch */
+.section-gradient-patch {
+  position: relative;
+}
+
+.section-gradient-patch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.04) 0%,
+    rgba(124, 58, 237, 0.04) 50%,
+    rgba(236, 72, 153, 0.03) 100%
+  );
+  pointer-events: none;
+}
+
+/* ===== DARK MODE STYLES ===== */
+
+/* Dark mode toggle button */
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  border: 1.5px solid #e2e8f0;
+  background: transparent;
+}
+
+#theme-toggle:hover {
+  background: #f1f5f9;
+}
+
+.dark #theme-toggle {
+  border-color: #334155;
+}
+
+.dark #theme-toggle:hover {
+  background: #1e293b;
+}
+
+#theme-toggle .icon-moon {
+  display: block;
+}
+
+#theme-toggle .icon-sun {
+  display: none;
+}
+
+.dark #theme-toggle .icon-moon {
+  display: none;
+}
+
+.dark #theme-toggle .icon-sun {
+  display: block;
+}
+
+#theme-toggle-mobile .icon-moon {
+  display: block;
+}
+
+#theme-toggle-mobile .icon-sun {
+  display: none;
+}
+
+.dark #theme-toggle-mobile .icon-moon {
+  display: none;
+}
+
+.dark #theme-toggle-mobile .icon-sun {
+  display: block;
+}
+
+/* Smooth transition for all elements */
+body,
+body * {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.15s ease;
+}
+
+/* --- Body & Base --- */
+.dark body {
+  background-color: #0f172a;
+  color: #cbd5e1;
+}
+
+/* --- Navbar --- */
+.dark .glass-nav {
+  background: rgba(15, 23, 42, 0.97);
+  border-bottom-color: #1e293b;
+}
+
+.dark #navbar {
+  background: rgba(15, 23, 42, 0.97);
+  border-color: #1e293b;
+}
+
+/* --- Nav links --- */
+.dark .nav-link {
+  color: #94a3b8 !important;
+}
+
+.dark .nav-link:hover {
+  color: #60a5fa !important;
+}
+
+.dark .nav-link.text-brand-600 {
+  color: #60a5fa !important;
+}
+
+/* --- Dropdown menus --- */
+.dark .absolute.bg-white.rounded-xl.shadow-xl {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark .absolute.bg-white .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .absolute.bg-white a:hover {
+  background: #0f172a !important;
+  color: #60a5fa !important;
+}
+
+/* --- Mobile drawer --- */
+.dark #mobile-drawer {
+  background: #0f172a;
+}
+
+.dark #mobile-drawer .border-b {
+  border-color: #1e293b !important;
+}
+
+.dark #mobile-drawer .bg-slate-50\/70 {
+  background: #1e293b !important;
+}
+
+.dark #mobile-drawer .text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark #mobile-drawer .text-slate-700 {
+  color: #94a3b8 !important;
+}
+
+.dark #mobile-drawer .text-brand-600 {
+  color: #60a5fa !important;
+}
+
+.dark #mobile-drawer .text-slate-400 {
+  color: #475569 !important;
+}
+
+.dark #mobile-drawer .text-slate-500 {
+  color: #64748b !important;
+}
+
+.dark .drawer-nav-link {
+  color: #94a3b8 !important;
+}
+
+.dark .drawer-nav-link:hover {
+  background: #1e293b !important;
+  color: #60a5fa !important;
+}
+
+.dark #mobile-drawer .border-l-2 {
+  border-color: #1e293b !important;
+}
+
+.dark #mobile-drawer .border-t {
+  border-color: #1e293b !important;
+}
+
+.dark #mobile-drawer p.text-slate-400 {
+  color: #475569 !important;
+}
+
+/* --- Mobile menu button --- */
+.dark #mobile-menu-btn {
+  color: #94a3b8;
+}
+
+.dark #mobile-menu-btn:hover {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+/* --- Body (dark class on html element) --- */
+.dark body {
+  background-color: #0f172a;
+  color: #cbd5e1;
+}
+
+/* --- Hero Section --- */
+.dark #home,
+.dark section:first-of-type {
+  background-color: #0f172a;
+}
+
+/* Text color scale — properly readable on dark backgrounds */
+.dark .text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-500 {
+  color: #64748b !important;
+}
+
+.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+/* --- Backgrounds --- */
+.dark .bg-white {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: #243048 !important;
+}
+
+.dark .bg-slate-50\/40 {
+  background-color: rgba(15, 23, 42, 0.4) !important;
+}
+
+/* --- Borders --- */
+.dark .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+.dark .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+.dark .border-slate-300 {
+  border-color: #475569 !important;
+}
+
+.dark .border-y {
+  border-color: #1e293b !important;
+}
+
+/* --- Hero badge & buttons --- */
+.dark .bg-white.border.border-brand-200 {
+  background: #1e293b !important;
+  border-color: #1d4ed8 !important;
+}
+
+.dark .text-brand-700 {
+  color: #93c5fd !important;
+}
+
+/* Core stack icon cards in hero */
+.dark .border-slate-200.shadow-sm.bg-white {
+  background: #243048 !important;
+  border-color: #334155 !important;
+}
+
+/* Hero: subheadline bold text */
+.dark .text-base.text-slate-700 b {
+  color: #e2e8f0 !important;
+}
+
+/* Hero: "I build" label */
+.dark .text-slate-700.mb-3 span.mr-2 {
+  color: #cbd5e1 !important;
+}
+
+/* Hero: Core Stack label */
+.dark .text-\[10px\].font-bold.text-slate-500.uppercase {
+  color: #94a3b8 !important;
+}
+
+/* Hero section background */
+.dark section.relative.pt-20 {
+  background-color: #0f172a !important;
+}
+
+/* --- Marquee section --- */
+.dark section.py-10.border-y {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark section.py-10 .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark section.py-10 .text-slate-400 {
+  color: #475569 !important;
+}
+
+.dark .from-slate-50 {
+  --tw-gradient-from: #1e293b !important;
+}
+
+.dark .to-transparent {
+  --tw-gradient-to: transparent !important;
+}
+
+.dark section.py-10 p.text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+/* ---- Resume Card: Top Header & Bottom Footer areas ---- */
+/* The header/footer use bg-slate-50/50 (opacity shorthand) not caught by .bg-slate-50 rule */
+.dark #resume-preview {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark #resume-preview > div:first-child {
+  background: #243048 !important;
+  border-bottom-color: #334155 !important;
+}
+
+/* Bottom download footer strip */
+.dark #resume-preview > div:last-child {
+  background: #243048 !important;
+  border-top-color: #334155 !important;
+}
+
+/* Avatar online dot border */
+.dark #resume-preview .absolute.-bottom-1.-right-1 {
+  border-color: #1e293b !important;
+}
+
+/* Name and role text in header */
+.dark #resume-preview h3.text-xl {
+  color: #f1f5f9 !important;
+}
+
+.dark #resume-preview p.text-brand-600 {
+  color: #60a5fa !important;
+}
+
+.dark #resume-preview p.text-xs.text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Stats row inside scrollable content */
+.dark #resume-preview .bg-slate-50.p-3.rounded-xl {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+/* ---- Map Card: Location pill & overlay ---- */
+/* White overlay on map — lighten in dark too but keep map visible */
+.dark .rounded-2xl.shadow-xl.border.border-slate-200.flex.items-center.h-40 {
+  border-color: #334155 !important;
+}
+
+/* Replace white/30 overlay with dark tint so map is still visible */
+.dark .absolute.inset-0.bg-white\/30 {
+  background: rgba(15, 23, 42, 0.45) !important;
+}
+
+/* Location pill text */
+.dark span.text-slate-900.bg-white\/95 {
+  background: rgba(30, 41, 59, 0.97) !important;
+  color: #f1f5f9 !important;
+  border-color: #475569 !important;
+}
+
+/* Map pin icon circle */
+.dark .w-12.h-12.mb-2.rounded-full.bg-white\/95 {
+  background: rgba(30, 41, 59, 0.97) !important;
+  border-color: #475569 !important;
+}
+
+/* "View on Maps" button */
+.dark a[href*="google.com/maps"] {
+  background: rgba(30, 41, 59, 0.97) !important;
+  color: #60a5fa !important;
+  border-color: #334155 !important;
+}
+
+.dark a[href*="google.com/maps"]:hover {
+  background: #2563eb !important;
+  color: #fff !important;
+}
+
+.dark #about {
+  background-color: #0f172a !important;
+}
+
+.dark .bg-slate-50.p-4.rounded-xl {
+  background: #243048 !important;
+  border-color: #334155 !important;
+}
+
+.dark .bg-slate-200.border.border-slate-300 {
+  background: #334155 !important;
+  border-color: #475569 !important;
+}
+
+.dark .sticker-wrap {
+  background: #1e293b !important;
+  border-color: #4f46e5 !important;
+}
+
+.dark .text-indigo-700 {
+  color: #a5b4fc !important;
+}
+
+.dark .border-l-2.border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+.dark .ring-white {
+  --tw-ring-color: #0f172a !important;
+}
+
+.dark .bg-slate-100.text-slate-600 {
+  background: #243048 !important;
+  color: #94a3b8 !important;
+}
+
+.dark .border-b.border-slate-200\/60 {
+  border-color: #1e293b !important;
+}
+
+/* Resume card: small uppercase section labels (Intro, Education, etc.) */
+.dark h4.text-xs.font-bold.text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Resume card: contact detail icon boxes */
+.dark .w-8.h-8.rounded-lg.bg-slate-200 {
+  background: #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+/* Resume card: label above value (Location, Email, Phone) */
+.dark p.text-\[10px\].font-bold.text-slate-400 {
+  color: #64748b !important;
+}
+
+/* Resume card: value text */
+.dark p.text-xs.font-semibold.text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark a.text-xs.font-semibold.text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+/* Resume card: education year badges */
+.dark .text-\[10px\].font-bold.bg-slate-100.text-slate-600 {
+  background: #243048 !important;
+  color: #94a3b8 !important;
+}
+
+/* Social buttons in about card */
+.dark .border.border-slate-300.rounded-lg.bg-white {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+}
+
+.dark a.flex.items-center.justify-center.gap-2.p-2.bg-white {
+  background: #0f172a !important;
+}
+
+/* Skills section tag text — keep colored but lighten for contrast on dark bg */
+.dark .text-blue-700 {
+  color: #93c5fd !important;
+}
+
+.dark .text-indigo-700 {
+  color: #a5b4fc !important;
+}
+
+.dark .text-fuchsia-700 {
+  color: #e879f9 !important;
+}
+
+.dark .text-emerald-700 {
+  color: #34d399 !important;
+}
+
+.dark .text-cyan-700 {
+  color: #22d3ee !important;
+}
+
+.dark .text-teal-700 {
+  color: #2dd4bf !important;
+}
+
+.dark .text-sky-700 {
+  color: #38bdf8 !important;
+}
+
+.dark .text-orange-700 {
+  color: #fb923c !important;
+}
+
+.dark .text-violet-700 {
+  color: #c4b5fd !important;
+}
+
+.dark .text-purple-700 {
+  color: #d8b4fe !important;
+}
+
+.dark .text-green-700 {
+  color: #4ade80 !important;
+}
+
+.dark .text-red-700 {
+  color: #f87171 !important;
+}
+
+.dark .text-yellow-700 {
+  color: #fde047 !important;
+}
+
+.dark .text-pink-700 {
+  color: #f9a8d4 !important;
+}
+
+.dark .text-rose-700 {
+  color: #fb7185 !important;
+}
+
+.dark .text-amber-700 {
+  color: #fbbf24 !important;
+}
+
+/* Section headings & body text global */
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f1f5f9 !important;
+}
+
+.dark h2.text-brand-600 {
+  color: #60a5fa !important;
+}
+
+.dark p {
+  color: #94a3b8;
+}
+
+/* Don't override colored/white text on dark sections (terminal, playground) */
+.dark .bg-slate-900 p,
+.dark .bg-slate-950 p {
+  color: inherit !important;
+}
+
+.dark .text-white {
+  color: #ffffff !important;
+}
+
+.dark .text-green-400 {
+  color: #4ade80 !important;
+}
+
+.dark .text-blue-400 {
+  color: #60a5fa !important;
+}
+
+.dark #skills {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark #skills .bg-white {
+  background: #0f172a !important;
+}
+
+.dark #skills .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+.dark #skills hr {
+  border-color: #1e293b !important;
+}
+
+.dark .bg-slate-50.text-slate-700.rounded-lg {
+  background: #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+/* Skill category icon backgrounds */
+.dark .bg-blue-50 {
+  background: rgba(37, 99, 235, 0.15) !important;
+}
+
+.dark .bg-indigo-50 {
+  background: rgba(79, 70, 229, 0.15) !important;
+}
+
+.dark .bg-sky-50 {
+  background: rgba(14, 165, 233, 0.15) !important;
+}
+
+.dark .bg-purple-50 {
+  background: rgba(124, 58, 237, 0.15) !important;
+}
+
+.dark .bg-green-50 {
+  background: rgba(22, 163, 74, 0.15) !important;
+}
+
+.dark .bg-amber-50 {
+  background: rgba(217, 119, 6, 0.15) !important;
+}
+
+.dark .bg-pink-50 {
+  background: rgba(219, 39, 119, 0.15) !important;
+}
+
+.dark .bg-teal-50 {
+  background: rgba(20, 184, 166, 0.15) !important;
+}
+
+.dark .bg-rose-50 {
+  background: rgba(225, 29, 72, 0.15) !important;
+}
+
+.dark .bg-orange-50 {
+  background: rgba(234, 88, 12, 0.15) !important;
+}
+
+.dark .bg-violet-50 {
+  background: rgba(124, 58, 237, 0.15) !important;
+}
+
+.dark .bg-fuchsia-50 {
+  background: rgba(192, 38, 211, 0.15) !important;
+}
+
+.dark .bg-cyan-50 {
+  background: rgba(6, 182, 212, 0.15) !important;
+}
+
+.dark .bg-emerald-50 {
+  background: rgba(16, 185, 129, 0.15) !important;
+}
+
+.dark .bg-yellow-50 {
+  background: rgba(202, 138, 4, 0.15) !important;
+}
+
+.dark .bg-red-50 {
+  background: rgba(220, 38, 38, 0.15) !important;
+}
+
+/* Skill tag borders */
+.dark .border-blue-200 {
+  border-color: rgba(37, 99, 235, 0.4) !important;
+}
+
+.dark .border-indigo-200 {
+  border-color: rgba(79, 70, 229, 0.4) !important;
+}
+
+.dark .border-fuchsia-200 {
+  border-color: rgba(192, 38, 211, 0.4) !important;
+}
+
+.dark .border-emerald-200 {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+
+.dark .border-cyan-200 {
+  border-color: rgba(6, 182, 212, 0.4) !important;
+}
+
+.dark .border-teal-200 {
+  border-color: rgba(20, 184, 166, 0.4) !important;
+}
+
+.dark .border-sky-200 {
+  border-color: rgba(14, 165, 233, 0.4) !important;
+}
+
+.dark .border-orange-200 {
+  border-color: rgba(234, 88, 12, 0.4) !important;
+}
+
+.dark .border-violet-200 {
+  border-color: rgba(124, 58, 237, 0.4) !important;
+}
+
+.dark .border-purple-200 {
+  border-color: rgba(147, 51, 234, 0.4) !important;
+}
+
+.dark .border-green-200 {
+  border-color: rgba(22, 163, 74, 0.4) !important;
+}
+
+.dark .border-red-200 {
+  border-color: rgba(220, 38, 38, 0.4) !important;
+}
+
+.dark .border-yellow-200 {
+  border-color: rgba(202, 138, 4, 0.4) !important;
+}
+
+.dark .border-pink-200 {
+  border-color: rgba(236, 72, 153, 0.4) !important;
+}
+
+.dark .border-rose-200 {
+  border-color: rgba(244, 63, 94, 0.4) !important;
+}
+
+.dark .border-amber-200 {
+  border-color: rgba(217, 119, 6, 0.4) !important;
+}
+
+/* --- Projects Section --- */
+.dark #projects {
+  background: #0f172a !important;
+}
+
+.dark .project-card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+.dark .project-card .bg-white {
+  background: #1e293b !important;
+}
+
+.dark .project-card .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+.dark .filter-btn.bg-white {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #94a3b8 !important;
+}
+
+/* Project card text — uses zinc- classes, not slate- */
+.dark .text-zinc-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-zinc-800 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-zinc-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-zinc-600 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-zinc-500 {
+  color: #64748b !important;
+}
+
+.dark .text-zinc-400 {
+  color: #94a3b8 !important;
+}
+
+.dark .border-zinc-200 {
+  border-color: #334155 !important;
+}
+
+/* Project card action buttons (View Code border/text) */
+.dark .project-card .border-slate-300 {
+  color: #66696c !important;
+}
+
+.dark .project-card .text-slate-900 {
+  border-color: #bac2cb !important;
+}
+
+/* Project card icon background areas */
+.dark .project-card .bg-violet-50 {
+  background: rgba(139, 92, 246, 0.15) !important;
+}
+
+.dark .project-card .bg-emerald-50 {
+  background: rgba(16, 185, 129, 0.15) !important;
+}
+
+.dark .project-card .bg-orange-50 {
+  background: rgba(234, 88, 12, 0.15) !important;
+}
+
+.dark .project-card .bg-sky-50 {
+  background: rgba(14, 165, 233, 0.15) !important;
+}
+
+.dark .project-card .bg-rose-50 {
+  background: rgba(225, 29, 72, 0.15) !important;
+}
+
+.dark .project-card .bg-amber-50 {
+  background: rgba(217, 119, 6, 0.15) !important;
+}
+
+.dark .project-card .bg-cyan-50 {
+  background: rgba(6, 182, 212, 0.15) !important;
+}
+
+.dark .project-card .bg-blue-50 {
+  background: rgba(37, 99, 235, 0.15) !important;
+}
+
+.dark .project-card .bg-pink-50 {
+  background: rgba(219, 39, 119, 0.15) !important;
+}
+
+.dark .project-card .bg-teal-50 {
+  background: rgba(20, 184, 166, 0.15) !important;
+}
+
+/* Projects overlay view */
+.dark #projects-view {
+  background: #0f172a !important;
+}
+
+.dark #projects-view .bg-white {
+  background: #1e293b !important;
+}
+
+.dark #projects-view .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+.dark #projects-view .border-b {
+  border-color: #1e293b !important;
+}
+
+.dark #projects-view .overlay-filter-btn.bg-white {
+  background: #1e293b !important;
+}
+
+/* --- Expertise Section --- */
+.dark #expertise {
+  background: #1e293b !important;
+}
+
+.dark #expertise .bg-white {
+  background: #0f172a !important;
+}
+
+.dark .feature-card-hover {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+.dark .feature-card-hover:hover {
+  border-color: #1d4ed8 !important;
+}
+
+/* --- Architecture Section --- */
+.dark #architecture {
+  background: #0f172a !important;
+}
+
+.dark #architecture .bg-white {
+  background: #1e293b !important;
+}
+
+.dark #architecture .bg-slate-50 {
+  background: #243048 !important;
+}
+
+/* --- Education Section --- */
+.dark #education {
+  background: #1e293b !important;
+}
+
+.dark #education .bg-white {
+  background: #0f172a !important;
+}
+
+.dark #education .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+.dark #education .bg-slate-50 {
+  background: #243048 !important;
+}
+
+.dark #education .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+/* Timeline dots */
+.dark .ring-white {
+  --tw-ring-color: #0f172a !important;
+}
+
+.dark .border-white {
+  border-color: #0f172a !important;
+}
+
+/* --- Playground Section --- */
+.dark #playground {
+  background: #0f172a !important;
+}
+
+.dark #playground .bg-white {
+  background: #1e293b !important;
+}
+
+.dark #playground .bg-slate-50 {
+  background: #243048 !important;
+}
+
+.dark #playground select {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+/* --- Contact Section --- */
+.dark #contact {
+  background: #1e293b !important;
+}
+
+.dark #contact .bg-white {
+  background: #0f172a !important;
+}
+
+.dark #contact input,
+.dark #contact textarea {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark #contact input::placeholder,
+.dark #contact textarea::placeholder {
+  color: #475569 !important;
+}
+
+.dark #contact input:focus,
+.dark #contact textarea:focus {
+  border-color: #2563eb !important;
+  background: #1e293b !important;
+}
+
+.dark #contact label {
+  color: #94a3b8 !important;
+}
+
+.dark #contact .bg-slate-50 {
+  background: #243048 !important;
+}
+
+/* --- Footer --- */
+.dark footer {
+  background: #0f172a !important;
+  border-color: #1e293b !important;
+}
+
+.dark footer .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark footer .text-slate-500 {
+  color: #64748b !important;
+}
+
+.dark footer .border-slate-200 {
+  border-color: #1e293b !important;
+}
+
+.dark footer .bg-slate-100 {
+  background: #1e293b !important;
+}
+
+/* --- Case Study Modal --- */
+.dark #caseStudyModal > div {
+  background: #1e293b !important;
+}
+
+.dark #caseStudyModal .bg-white {
+  background: #1e293b !important;
+}
+
+.dark #caseStudyModal .bg-slate-50 {
+  background: #243048 !important;
+}
+
+.dark #caseStudyModal .border-slate-100 {
+  border-color: #334155 !important;
+}
+
+.dark #caseStudyModal .text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark #caseStudyModal .text-slate-700 {
+  color: #94a3b8 !important;
+}
+
+.dark #caseStudyModal .text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+/* --- Toast notifications --- */
+.dark .toast-light {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+/* --- Misc elements --- */
+.dark .bg-brand-50 {
+  background: rgba(37, 99, 235, 0.1) !important;
+}
+
+.dark .bg-accent-50,
+.dark .bg-accent-100 {
+  background: rgba(124, 58, 237, 0.1) !important;
+}
+
+.dark .text-brand-600 {
+  color: #60a5fa !important;
+}
+
+.dark .text-brand-700 {
+  color: #93c5fd !important;
+}
+
+.dark .text-brand-600.font-semibold {
+  color: #60a5fa !important;
+}
+
+.dark .w-16.h-1.bg-brand-600 {
+  background: #2563eb !important;
+}
+
+.dark .bg-EEF2FF {
+  background: #1e293b !important;
+}
+
+.dark .border-C7D2FE {
+  border-color: #4f46e5 !important;
+}
+
+/* Section headings */
+.dark h2.text-brand-600 {
+  color: #60a5fa !important;
+}
+
+.dark h3.text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark h4.text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark p.text-slate-600 {
+  color: #94a3b8 !important;
+}
+
+.dark p.text-slate-700 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-400.uppercase {
+  color: #475569 !important;
+}
+
+/* Dark mode scrollbar */
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Drawer overlay stays dark on both modes */
+#drawer-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
