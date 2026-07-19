@@ -1,3 +1,6 @@
+document.documentElement.classList.remove('dark');
+        localStorage.removeItem('theme');
+
 /**
  * =============================================================
  *  main.js — Gaurav Singh Panwar - Portfolio
@@ -32,43 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 2. Init all lucide icons (including newly rendered project cards)
     lucide.createIcons();
-
-    // Floating Tech Particles
-    const particleContainer = document.getElementById("hero-particles");
-    if (particleContainer) {
-        const icons = [
-            "🐍",
-            "⚡",
-            "🔧",
-            "🗄️",
-            "☁️",
-            "🤖",
-            "🔗",
-            "📡",
-            "🛡️",
-            "🚀",
-            "💡",
-            "⚙️",
-            "🧩",
-            "📦",
-            "🔑",
-        ];
-        const count = 18;
-        for (let k = 0; k < count; k++) {
-            const p = document.createElement("span");
-            p.className = "hero-particle";
-            p.textContent = icons[k % icons.length];
-            const size = 16 + Math.random() * 14;
-            p.style.cssText = `
-        font-size:${size}px;
-        left:${Math.random() * 100}%;
-        animation-duration:${10 + Math.random() * 14}s;
-        animation-delay:${Math.random() * 12}s;
-        opacity:0;
-    `;
-            particleContainer.appendChild(p);
-        }
-    }
 });
 // --- Typewriter ---
 (function initTypewriter() {
@@ -461,10 +427,25 @@ function closeProjectsView() {
 // Modal Logic
 const modal = document.getElementById("caseStudyModal");
 const modalTitle = document.getElementById("modal-project-title");
-const modalDesc = document.getElementById("modal-desc");
 const modalIconContainer = document.getElementById("modal-icon-container");
 const modalTags = document.getElementById("modal-tags");
-const modalDemoBtn = document.getElementById("modal-demo-btn"); // New selection
+const modalChallenge = document.getElementById("modal-desc");
+const modalSolution = document.getElementById("modal-solution");
+const modalFeatures = document.getElementById("modal-features");
+const modalOutcome = document.getElementById("modal-outcome");
+const modalDemoBtn = document.getElementById("modal-demo-btn");
+
+// Fallback content used only if a project doesn't define its own caseStudy fields
+const DEFAULT_CASE_STUDY = {
+    solution: "Designed and built a clean, modular solution focused on solving the core problem directly.",
+    features: [
+        "Clean, modular codebase built for maintainability",
+        "Well-tested core logic with clear error handling",
+        "Documented setup for easy local development",
+        "Deployed with a straightforward CI/CD flow"
+    ],
+    outcome: "Delivered a reliable, working solution that met the project's core requirements."
+};
 
 function openModal(buttonElement) {
     // Find the parent card
@@ -480,11 +461,25 @@ function openModal(buttonElement) {
     const demoLinkEl = card.querySelector(".project-demo-link");
     const demoUrl = demoLinkEl ? demoLinkEl.href : "#";
 
+    // Look up this project's own caseStudy data from PROJECTS via its index
+    const projectIndex = card.getAttribute("data-project-index");
+    const project = (typeof PROJECTS !== "undefined" && projectIndex !== null)
+        ? PROJECTS[parseInt(projectIndex, 10)]
+        : null;
+    const cs = (project && project.caseStudy) ? project.caseStudy : {};
+    const challengeText = cs.challenge || desc; // fall back to card description if no challenge given
+    const solutionText = cs.solution || DEFAULT_CASE_STUDY.solution;
+    const featuresList = (cs.features && cs.features.length) ? cs.features : DEFAULT_CASE_STUDY.features;
+    const outcomeText = cs.outcome || DEFAULT_CASE_STUDY.outcome;
+
     // Populate Modal
     modalTitle.innerText = title;
-    modalDesc.innerText = desc;
     modalIconContainer.innerHTML = iconHtml;
     modalTags.innerHTML = tagsHtml; // Clone tags
+    modalChallenge.innerText = challengeText;
+    modalSolution.innerText = solutionText;
+    modalFeatures.innerHTML = featuresList.map(f => `<li>${f}</li>`).join("");
+    modalOutcome.innerText = outcomeText;
 
     // Set Modal Demo Button Link
     modalDemoBtn.href = demoUrl;
@@ -611,12 +606,10 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
                 showToast("Message sent successfully!", "success");
                 form.reset();
             } else {
-                console.log(response);
                 showToast(json.message || "Something went wrong.", "error");
             }
         })
         .catch((error) => {
-            console.log(error);
             showToast("Failed to send message. Please try again.", "error");
         })
         .finally(() => {
@@ -673,18 +666,12 @@ function showToast(message, type = "success") {
 }
 
 // ===== DARK MODE LOGIC =====
-(function () {
-    // Apply saved preference immediately (before page paint)
-    const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (saved === "dark" || (!saved && prefersDark)) {
-        document.documentElement.classList.add("dark");
-    }
-})();
+// Always start in light mode — no persistence across sessions
+localStorage.removeItem('theme');
 
 function toggleDarkMode() {
     const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+    // Session-only: no localStorage save, resets on next load
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -693,3 +680,93 @@ document.addEventListener("DOMContentLoaded", function () {
     if (btn) btn.addEventListener("click", toggleDarkMode);
     if (btnMobile) btnMobile.addEventListener("click", toggleDarkMode);
 });
+
+
+    (function () {
+        const cubeScene = document.getElementById('cubeScene');
+        if (!cubeScene) return; // hero cube not present on this viewport/build
+
+        const CUBE_ITEMS = [
+            { tag: 'API Development', color: '#199fd7', angle: 0, r: 155 },
+            { tag: 'Database Design', color: '#99bd3c', angle: 60, r: 155 },
+            { tag: 'Authentication', color: '#fc7942', angle: 120, r: 155 },
+            { tag: 'Real-Time Systems', color: '#ee5091', angle: 180, r: 155 },
+            { tag: 'Cloud Deployment', color: '#8a50d8', angle: 240, r: 155 },
+            { tag: 'System Security', color: '#99bd3c', angle: 300, r: 155 },
+        ];
+
+        const cubeCardsLayer = document.getElementById('cubeCardsLayer');
+        const cubeTracesSvg = document.getElementById('cubeTracesSvg');
+
+        const cubeOrbitItems = CUBE_ITEMS.map((item, i) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'cube-card3d';
+            wrap.innerHTML = `<div class="cube-card-face" style="border-color:${item.color}70;box-shadow:0 0 14px ${item.color}40, inset 0 1px 0 ${item.color}20">
+                <span class="cube-card-dot" style="background:${item.color};box-shadow:0 0 8px ${item.color}"></span>
+                <span class="cube-card-label" style="color:${item.color}">${item.tag}</span>
+              </div>`;
+            wrap.style.opacity = '0';
+            wrap.style.transition = 'opacity .5s';
+            setTimeout(() => wrap.style.opacity = '1', 120 + i * 90);
+            cubeCardsLayer.appendChild(wrap);
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('class', 'cube-trace-path');
+            path.setAttribute('stroke', item.color);
+            path.style.animationDelay = (i * 0.15) + 's';
+            cubeTracesSvg.appendChild(path);
+
+            const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            dot.setAttribute('r', '2.8');
+            dot.setAttribute('class', 'cube-trace-dot');
+            dot.style.fill = item.color;
+            cubeTracesSvg.appendChild(dot);
+
+            return { ...item, el: wrap, pathEl: path, dotEl: dot };
+        });
+
+        let cubeOrbitDeg = 0, cubeLastTs = null;
+        const CUBE_TILT_Y = 0.42;
+        let cubeDotProgress = cubeOrbitItems.map((_, i) => i * 0.13);
+        const CUBE_ENTRANCE_MS = 900;
+        const cubeStartTime = performance.now();
+
+        function animateCubeOrbit(ts) {
+            if (cubeLastTs !== null) {
+                const dt = ts - cubeLastTs;
+                cubeOrbitDeg = (cubeOrbitDeg + dt * 0.018) % 360;
+            }
+            cubeLastTs = ts;
+
+            cubeOrbitItems.forEach((it, i) => {
+                const a = ((it.angle + cubeOrbitDeg) * Math.PI) / 180;
+                const x = Math.cos(a) * it.r;
+                const y = Math.sin(a) * it.r * CUBE_TILT_Y;
+                const depth = Math.sin(a);
+                const sc = 0.82 + (depth + 1) * 0.12;
+
+                const entrance = Math.min((ts - cubeStartTime) / CUBE_ENTRANCE_MS, 1);
+
+                it.el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${sc * (0.5 + entrance * 0.5)})`;
+                it.el.style.opacity = `${0.92 * entrance}`;
+                it.el.style.zIndex = Math.round(depth * 10 + 30);
+
+                const midX = x * 0.5, midY = y * 0.5 - 12;
+                const d = `M0,0 Q${midX},${midY} ${x},${y}`;
+                it.pathEl.setAttribute('d', d);
+                it.pathEl.style.opacity = (0.32 + (depth + 1) * 0.16) * entrance;
+
+                const len = it.pathEl.getTotalLength ? it.pathEl.getTotalLength() : 0;
+                if (len) {
+                    cubeDotProgress[i] = (cubeDotProgress[i] + 0.0032) % 1;
+                    const pt = it.pathEl.getPointAtLength(cubeDotProgress[i] * len);
+                    it.dotEl.setAttribute('cx', pt.x);
+                    it.dotEl.setAttribute('cy', pt.y);
+                    it.dotEl.style.opacity = (0.7 + (depth + 1) * 0.15) * entrance;
+                }
+            });
+
+            requestAnimationFrame(animateCubeOrbit);
+        }
+        requestAnimationFrame(animateCubeOrbit);
+    })();

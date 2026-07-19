@@ -4,6 +4,22 @@
    Tailwind utility classes are handled by tailwind.config.js cdn
 ================================================================== */
 
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .glass-nav {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -29,7 +45,7 @@ a[title]:hover::after {
 }
 
 .hero-gradient-text {
-  background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -270,48 +286,6 @@ body {
   }
 }
 
-@keyframes ftspark {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(var(--ftdx), var(--ftdy)) scale(0);
-  }
-}
-
-/* Floating particles */
-.hero-particle {
-  position: absolute;
-  pointer-events: none;
-  animation: particlefloat linear infinite;
-  opacity: 0;
-  font-size: 22px;
-  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.3));
-}
-
-@keyframes particlefloat {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-
-  5% {
-    opacity: 0.6;
-  }
-
-  90% {
-    opacity: 0.4;
-  }
-
-  100% {
-    transform: translateY(-120px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
 /* Gradient section patch */
 .section-gradient-patch {
   position: relative;
@@ -424,11 +398,11 @@ body * {
 }
 
 .dark .nav-link:hover {
-  color: #60a5fa !important;
+  color: #40a9ff !important;
 }
 
 .dark .nav-link.text-brand-600 {
-  color: #60a5fa !important;
+  color: #40a9ff !important;
 }
 
 /* --- Dropdown menus --- */
@@ -588,7 +562,7 @@ body * {
 }
 
 .dark .text-brand-700 {
-  color: #93c5fd !important;
+  color: #74c0fc !important;
 }
 
 /* Core stack icon cards in hero */
@@ -877,7 +851,7 @@ body * {
 }
 
 .dark h2.text-brand-600 {
-  color: #60a5fa !important;
+  color: #40a9ff !important;
 }
 
 .dark p {
@@ -1361,11 +1335,11 @@ body * {
 }
 
 .dark .text-brand-600 {
-  color: #60a5fa !important;
+  color: #40a9ff !important;
 }
 
 .dark .text-brand-700 {
-  color: #93c5fd !important;
+  color: #74c0fc !important;
 }
 
 .dark .text-brand-600.font-semibold {
@@ -1386,7 +1360,7 @@ body * {
 
 /* Section headings */
 .dark h2.text-brand-600 {
-  color: #60a5fa !important;
+  color: #40a9ff !important;
 }
 
 .dark h3.text-slate-900 {
@@ -1425,4 +1399,296 @@ body * {
 /* Drawer overlay stays dark on both modes */
 #drawer-overlay {
   background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* ===== COPILOT DRAWER DARK MODE FIX ===== */
+/* Ensure drawer header text is visible in dark mode */
+.dark #drawer-name-text {
+  color: #f1f5f9 !important;
+}
+.dark #drawer-role-text {
+  color: #40a9ff !important;
+}
+
+/* Copilot gradient accent line in drawer */
+.dark #mobile-drawer .bg-slate-200 {
+  background: rgba(0, 120, 212, 0.15) !important;
+}
+
+/* GitHub buttons keep the same brand black everywhere; just add a
+   subtle border in dark mode so they read distinctly against dark panels */
+.dark a[style*="#24292e"],
+.dark a[class*="bg-[#24292e]"] {
+  border: 1px solid #444c56 !important;
+}
+
+/* Feature card hover in Copilot blue */
+.dark .feature-card-hover:hover {
+  border-color: #0078D4 !important;
+}
+
+/* Brand blue bg in dark */
+.dark .bg-brand-600 {
+  background-color: #199fd7 !important;
+}
+
+.dark .bg-brand-700 {
+  background-color: #1488b8 !important;
+}
+
+
+/* ═══════════════════════════════════════════════
+   COPILOT FULL RAINBOW THEME
+   Colors: #199fd7 · #99bd3c · #fc7942 · #ee5091 · #8a50d8
+   ═══════════════════════════════════════════════ */
+
+/* Copilot gradient utility */
+.copilot-grad {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
+}
+.copilot-grad-text {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.copilot-grad-border {
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) border-box;
+}
+.dark .copilot-grad-border {
+  background: linear-gradient(#0f172a, #0f172a) padding-box,
+              linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) border-box;
+}
+
+/* Nav active indicator */
+.nav-link.text-brand-600::after,
+.nav-link:hover::after {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) !important;
+}
+
+/* Section heading accent underline */
+.section-title-underline {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
+  height: 3px;
+  border-radius: 2px;
+}
+
+/* Hero CTA primary button glow */
+a[href="#projects"].flex-1 {
+  background: #199fd7 !important;
+  box-shadow: 0 4px 20px rgba(25,159,215,0.35) !important;
+}
+a[href="#projects"].flex-1:hover {
+  background: #1488b8 !important;
+  box-shadow: 0 6px 24px rgba(25,159,215,0.5) !important;
+}
+
+/* Skill tags — cycle through Copilot colors */
+.skill-tag:nth-child(5n+1) { background: rgba(25,159,215,0.12); color: #199fd7; border-color: rgba(25,159,215,0.3); }
+.skill-tag:nth-child(5n+2) { background: rgba(153,189,60,0.12); color: #7a9c2a; border-color: rgba(153,189,60,0.3); }
+.skill-tag:nth-child(5n+3) { background: rgba(252,121,66,0.12); color: #d95e28; border-color: rgba(252,121,66,0.3); }
+.skill-tag:nth-child(5n+4) { background: rgba(238,80,145,0.12); color: #ee5091; border-color: rgba(238,80,145,0.3); }
+.skill-tag:nth-child(5n+5) { background: rgba(138,80,216,0.12); color: #8a50d8; border-color: rgba(138,80,216,0.3); }
+
+/* About / Skills feature cards — left border Copilot accent */
+.feature-card:nth-child(5n+1) { border-left: 3px solid #199fd7; }
+.feature-card:nth-child(5n+2) { border-left: 3px solid #99bd3c; }
+.feature-card:nth-child(5n+3) { border-left: 3px solid #fc7942; }
+.feature-card:nth-child(5n+4) { border-left: 3px solid #ee5091; }
+.feature-card:nth-child(5n+5) { border-left: 3px solid #8a50d8; }
+
+/* Timeline dots — alternating Copilot colors */
+.timeline-dot:nth-child(5n+1) { background: #199fd7 !important; box-shadow: 0 0 0 4px rgba(25,159,215,0.2); }
+.timeline-dot:nth-child(5n+2) { background: #99bd3c !important; box-shadow: 0 0 0 4px rgba(153,189,60,0.2); }
+.timeline-dot:nth-child(5n+3) { background: #fc7942 !important; box-shadow: 0 0 0 4px rgba(252,121,66,0.2); }
+.timeline-dot:nth-child(5n+4) { background: #ee5091 !important; box-shadow: 0 0 0 4px rgba(238,80,145,0.2); }
+.timeline-dot:nth-child(5n+5) { background: #8a50d8 !important; box-shadow: 0 0 0 4px rgba(138,80,216,0.2); }
+
+/* Contact icons — Copilot cycling colors */
+.contact-icon-wrap:nth-child(5n+1) { background: rgba(25,159,215,0.12); color: #199fd7; }
+.contact-icon-wrap:nth-child(5n+2) { background: rgba(153,189,60,0.12); color: #7a9c2a; }
+.contact-icon-wrap:nth-child(5n+3) { background: rgba(252,121,66,0.12); color: #fc7942; }
+.contact-icon-wrap:nth-child(5n+4) { background: rgba(238,80,145,0.12); color: #ee5091; }
+.contact-icon-wrap:nth-child(5n+5) { background: rgba(138,80,216,0.12); color: #8a50d8; }
+
+/* Section divider gradient line */
+.section-divider {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
+  opacity: 0.4;
+}
+
+/* Scrollbar — Copilot gradient track */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) !important;
+}
+
+/* Progress / stat bars */
+.stat-bar-fill {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) !important;
+}
+
+/* Resume section accent */
+.resume-accent {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
+}
+
+/* Project card demo button — Copilot blue */
+.project-demo-link {
+  background: #199fd7 !important;
+  box-shadow: 0 2px 8px rgba(25,159,215,0.3) !important;
+}
+.project-demo-link:hover {
+  background: #1488b8 !important;
+  box-shadow: 0 4px 16px rgba(25,159,215,0.5) !important;
+}
+
+/* Mobile drawer role text Copilot blue */
+.dark #drawer-role-text {
+  color: #199fd7 !important;
+}
+
+/* Active nav dot */
+.nav-progress-dot.active {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) !important;
+}
+
+/* Gradient border on hero card / terminal card */
+.terminal-card, .hero-terminal {
+  border: 1px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) border-box;
+}
+.dark .terminal-card, .dark .hero-terminal {
+  background: linear-gradient(#1e293b, #1e293b) padding-box,
+              linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) border-box;
+}
+
+/* Active section highlight */
+.section-active-bar {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);
+}
+
+/* Input focus ring */
+input:focus, textarea:focus {
+  outline: none !important;
+  border-color: #199fd7 !important;
+  box-shadow: 0 0 0 3px rgba(25,159,215,0.2) !important;
+}
+
+/* Submit button — Copilot gradient */
+button[type="submit"], .btn-submit {
+  background: linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%) !important;
+  color: white !important;
+  border: none !important;
+}
+button[type="submit"]:hover, .btn-submit:hover {
+  opacity: 0.9 !important;
+  box-shadow: 0 4px 20px rgba(25,159,215,0.4) !important;
+}
+
+
+/* ── Contact section Copilot distinction ── */
+#contact {
+  position: relative;
+}
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,#199fd7,#99bd3c,#fc7942,#ee5091,#8a50d8);
+}
+#contact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    rgba(25,159,215,0.03) 0%,
+    rgba(153,189,60,0.02) 25%,
+    rgba(238,80,145,0.03) 75%,
+    rgba(138,80,216,0.03) 100%);
+  pointer-events: none;
+}
+
+/* Projects section subtle slate tint stays, contact is white+tint */
+#projects {
+  border-top: 3px solid rgba(25,159,215,0.15);
+}
+
+/* Social icon text color fix for resume card */
+[data-x] svg, [data-x] span {
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+}
+
+
+
+
+/* ═══════════════════════════════════════════════
+   3D PYTHON CUBE — hero visual (from hero-cube-tags-only.html)
+   ═══════════════════════════════════════════════ */
+@keyframes cubeFloatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes cubePulseChip{0%,100%{box-shadow:0 0 40px #199fd780,0 0 80px #8a50d850,0 0 140px #8a50d820}
+  50%{box-shadow:0 0 60px #3bb8eeb0,0 0 110px #199fd770,0 0 180px #8a50d840}}
+@keyframes cubeTraceGlow{0%,100%{opacity:.35}50%{opacity:.95}}
+@keyframes cubePinBlink{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes cubeSpin{from{transform:rotateX(-18deg) rotateY(0deg)}to{transform:rotateX(-18deg) rotateY(360deg)}}
+@keyframes cubeCardPop{0%{opacity:0;transform:scale(.4) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+
+.cube-scene-wrap{display:flex;flex-direction:column;align-items:center;position:relative;width:100%;max-width:460px;margin:0 auto;isolation:isolate}
+.cube-scene{position:relative;width:400px;height:400px;animation:cubeFloatY 6s ease-in-out infinite;perspective:1000px;max-width:100%;isolation:isolate;transform:translateZ(0);background:transparent}
+.cube-iso-plane{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(55deg) rotateZ(45deg)}
+
+.cube-3d-wrap{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateZ(40px);
+  transform-style:preserve-3d;perspective:800px}
+.cube-3d{position:relative;width:80px;height:80px;transform-style:preserve-3d;
+  animation:cubeSpin 9s linear infinite, cubePulseChip 3.5s ease-in-out infinite;}
+.cube-3d-face{position:absolute;inset:0;background:linear-gradient(150deg,#15263f,#0a1626);
+  border:1px solid #8a50d855;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  box-shadow:inset 0 0 22px #8a50d825;backface-visibility:visible;overflow:hidden}
+.cube-3d-face .cube-py-logo{width:40px;height:40px;filter:drop-shadow(0 0 12px #199fd7aa)}
+.cube-face-front {transform:translateZ(40px)}
+.cube-face-back  {transform:rotateY(180deg) translateZ(40px)}
+.cube-face-right {transform:rotateY(90deg) translateZ(40px)}
+.cube-face-left  {transform:rotateY(-90deg) translateZ(40px)}
+.cube-face-top   {transform:rotateX(90deg) translateZ(40px)}
+.cube-face-bottom{transform:rotateX(-90deg) translateZ(40px)}
+.cube-face-edge-glow{position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle at 35% 30%,#06a8ed30,transparent 60%)}
+
+.cube-pin{position:absolute;background:linear-gradient(90deg,#199fd7,#8a50d8);animation:cubePinBlink 2s ease-in-out infinite;z-index:5}
+.cube-pin.cube-pin-top{width:3px;height:12px;top:-12px;left:50%;margin-left:-1.5px}
+.cube-pin.cube-pin-bottom{width:3px;height:12px;bottom:-12px;left:50%;margin-left:-1.5px}
+.cube-pin.cube-pin-left{width:12px;height:3px;left:-12px;top:50%;margin-top:-1.5px}
+.cube-pin.cube-pin-right{width:12px;height:3px;right:-12px;top:50%;margin-top:-1.5px}
+
+.cube-traces-svg{position:absolute;left:0;top:50%;width:100%;height:0;overflow:visible}
+.cube-trace-path{fill:none;stroke-width:1.6;stroke-linecap:round;animation:cubeTraceGlow 2.5s ease-in-out infinite}
+.cube-trace-dot{fill:#fff;filter:drop-shadow(0 0 5px currentColor)}
+
+.cube-card3d{position:absolute;left:50%;top:0;z-index:5}
+.cube-card-face{background:linear-gradient(150deg,#101a30,#0a0f1c);border:1.4px solid;border-radius:100px;padding:5px 12px;
+  display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;white-space:nowrap;
+  transform:rotateZ(-45deg) rotateX(-55deg);animation:cubeCardPop .5s cubic-bezier(.34,1.56,.64,1) both;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.35);}
+.cube-card-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.cube-card-label{font-size:9.5px;font-weight:700;letter-spacing:.01em;font-family:'JetBrains Mono',monospace}
+
+/* Cube scene container — no background, fully transparent like original source */
+.cube-scene-bg{
+  background: transparent;
+}
+
+@media (max-width: 1023px) {
+  .cube-scene-wrap { max-width: 280px; margin: 1.5rem auto 0; }
+  .cube-scene { width: 260px; height: 260px; }
+}
+@media (max-width: 480px) {
+  .cube-scene-wrap { max-width: 230px; }
+  .cube-scene { width: 220px; height: 220px; }
+  .cube-card-label { font-size: 8px; }
+  .cube-card-face { padding: 4px 9px; }
 }

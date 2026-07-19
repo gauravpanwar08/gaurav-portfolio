@@ -4,18 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gaurav Singh Panwar — Python Backend Engineer specializing in scalable architecture, high-performance APIs, and cloud-native systems.">
     <title>Gaurav Singh Panwar | Backend Engineer Portfolio</title>
 
-    <!-- Fonts: Inter -->
+    <!-- Resource hints: connect early to third-party origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+    <!-- Local stylesheet: preload + high priority -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Fonts: Inter + JetBrains Mono -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
-
-
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,21 +42,28 @@
                     },
                     colors: {
                         brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a',
+                            50:  '#e8f7fc',
+                            100: '#c8ecf7',
+                            300: '#6ecaea',
+                            400: '#3db8e0',
+                            500: '#1aaed8',
+                            600: '#199fd7',
+                            700: '#1488b8',
+                            900: '#0a4a66',
                         },
                         accent: {
-                            50: '#f5f3ff',
-                            200: '#ddd6fe',
-                            300: '#c4b5fd',
-                            600: '#7c3aed',
-                            700: '#6d28d9',
+                            50:  '#f4f0fb',
+                            200: '#d5c3f2',
+                            300: '#b496e8',
+                            600: '#8a50d8',
+                            700: '#6e3db8',
+                        },
+                        copilot: {
+                            blue:   '#199fd7',
+                            green:  '#99bd3c',
+                            orange: '#fc7942',
+                            pink:   '#ee5091',
+                            purple: '#8a50d8',
                         },
                         dark: {
                             900: '#0f172a',
@@ -56,7 +71,6 @@
                         }
                     },
                     animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
                         'scroll': 'scroll 15s linear infinite',
                         'blob': 'blob 7s infinite',
                         'text-shimmer': 'text-shimmer 3s linear infinite',
@@ -64,10 +78,6 @@
                         'wave': 'wave 2.5s infinite',
                     },
                     keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
                         scroll: {
                             '0%': { transform: 'translateX(0)' },
                             '100%': { transform: 'translateX(-50%)' },
@@ -111,17 +121,8 @@
         };
     </script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Instant dark mode init (prevents flash) -->
-    <script>
-        (function () {
-            const saved = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (saved === 'dark' || (!saved && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body
@@ -141,8 +142,11 @@
                             <defs>
                                 <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36"
                                     gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="#2563eb" />
-                                    <stop offset="100%" stop-color="#7c3aed" />
+                                    <stop offset="0%"   stop-color="#199fd7" />
+                                    <stop offset="25%"  stop-color="#99bd3c" />
+                                    <stop offset="50%"  stop-color="#fc7942" />
+                                    <stop offset="75%"  stop-color="#ee5091" />
+                                    <stop offset="100%" stop-color="#8a50d8" />
                                 </linearGradient>
                             </defs>
                             <!-- Hexagon base -->
@@ -174,7 +178,7 @@
                         class="nav-link text-sm font-medium text-slate-600 hover:text-brand-600 transition"
                         data-target="about">About</a>
 
-                    <!-- Education (Future-proof: can be changed to Experience) -->
+                    <!-- Education -->
                     <a href="#education" onclick="handleNavClick(event, 'education')"
                         class="nav-link text-sm font-medium text-slate-600 hover:text-brand-600 transition"
                         data-target="education">Education</a>
@@ -269,7 +273,7 @@
                     </a>
 
                     <a href="https://github.com/gauravpanwar08" target="_blank"
-                        class="group flex-1 h-10 px-4 rounded-xl bg-black text-white flex items-center justify-center gap-2 font-medium hover:bg-neutral-800 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap"
+                        class="group flex-1 h-10 px-4 rounded-xl text-white flex items-center justify-center gap-2 font-medium hover:opacity-90 transition-all hover:-translate-y-1 hover:shadow-lg whitespace-nowrap" style="background:#24292e;"
                         title="GitHub">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -371,8 +375,11 @@
                 <svg width="30" height="30" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <linearGradient id="logoGrad2" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#2563eb" />
-                            <stop offset="100%" stop-color="#7c3aed" />
+                            <stop offset="0%"   stop-color="#199fd7" />
+                            <stop offset="25%"  stop-color="#99bd3c" />
+                            <stop offset="50%"  stop-color="#fc7942" />
+                            <stop offset="75%"  stop-color="#ee5091" />
+                            <stop offset="100%" stop-color="#8a50d8" />
                         </linearGradient>
                     </defs>
                     <path d="M18 2 L32 10 L32 26 L18 34 L4 26 L4 10 Z" fill="url(#logoGrad2)" />
@@ -382,11 +389,11 @@
                         stroke-linejoin="round" fill="none" />
                     <circle cx="18" cy="18" r="2" fill="white" opacity="0.9" />
                 </svg>
-                <div class="flex items-center gap-3 p-3 bg-slate-200 rounded-2xl">
-                    <div class="w-1.5 h-8 bg-indigo-600 rounded-full"></div>
+                <div class="flex items-center gap-3 p-3 rounded-2xl" style="background:rgba(0,120,212,0.12); border:1px solid rgba(0,120,212,0.25);">
+                    <div class="w-1.5 h-8 rounded-full" style="background:linear-gradient(180deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);"></div>
                     <div>
-                        <div class="text-sm font-bold text-slate-900">Gaurav Singh Panwar</div>
-                        <div class="text-[11px] font-semibold text-indigo-600 uppercase tracking-wide">Backend Engineer
+                        <div class="text-sm font-bold" style="color: inherit;" id="drawer-name-text">Gaurav Singh Panwar</div>
+                        <div class="text-[11px] font-semibold uppercase tracking-wide" style="color:#0078D4;" id="drawer-role-text">Backend Engineer
                         </div>
                     </div>
                 </div>
@@ -472,7 +479,7 @@
         <div class="px-5 py-4 border-t border-slate-100 bg-slate-50/70">
             <div class="flex items-center gap-3 mb-3">
                 <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
-                    class="flex-1 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center hover:bg-brand-600 transition-all shadow-sm">
+                    class="flex-1 h-10 rounded-xl text-white flex items-center justify-center transition-all shadow-sm hover:opacity-90" style="background:#0A66C2;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                         <path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
@@ -481,7 +488,7 @@
                     </svg>
                 </a>
                 <a href="https://github.com/gauravpanwar08" target="_blank"
-                    class="flex-1 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center hover:bg-slate-700 transition-all shadow-sm">
+                    class="flex-1 h-10 rounded-xl text-white flex items-center justify-center transition-all shadow-sm hover:opacity-90" style="background:#24292e;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
                         <path
@@ -503,26 +510,14 @@
 
     <!-- Hero Section -->
     <section class="relative pt-20 pb-4 sm:pt-24 sm:pb-2 lg:pt-28 lg:pb-4 overflow-hidden bg-slate-50/40">
-        <!-- Background Decor (Blobs) -->
+        <!-- Background Decor (Static Blobs) -->
         <div class="absolute inset-0 -z-10 overflow-hidden">
             <div class="absolute top-0 right-0 w-full h-full bg-hero-pattern opacity-60"></div>
-            <div
-                class="absolute -top-20 -right-20 w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob">
-            </div>
-            <div
-                class="absolute top-40 right-60 w-72 h-72 bg-accent-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000">
-            </div>
-            <div
-                class="absolute -bottom-32 left-20 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000">
-            </div>
-            <!-- Extra gradient patches -->
-            <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-brand-100/30 via-purple-100/20 to-pink-100/30 rounded-full filter blur-3xl opacity-50 pointer-events-none">
-            </div>
+            <div class="absolute -top-20 -right-20 w-96 h-96 bg-brand-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 pointer-events-none"></div>
+            <div class="absolute top-40 right-60 w-72 h-72 bg-accent-300 rounded-full mix-blend-multiply filter blur-3xl opacity-25 pointer-events-none"></div>
+            <div class="absolute bottom-0 left-10 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-brand-100/30 via-purple-100/20 to-pink-100/30 rounded-full filter blur-3xl opacity-50 pointer-events-none"></div>
         </div>
-
-        <!-- Floating Tech Particles (background layer) -->
-        <div id="hero-particles" class="absolute inset-0 -z-5 overflow-hidden pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-4 lg:gap-12 items-center">
@@ -540,7 +535,8 @@
                         style="animation-delay: 0.1s;">
                         Hi, I'm <br>
                         <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 via-accent-600 to-brand-700 bg-[length:200%_auto] animate-[text-shimmer_3s_linear_infinite] whitespace-nowrap">Gaurav
+                            class="text-transparent bg-clip-text bg-[length:300%_auto] animate-[text-shimmer_4s_linear_infinite] whitespace-nowrap"
+                            style="background-image: linear-gradient(90deg, #199fd7 0%, #99bd3c 20%, #fc7942 40%, #ee5091 60%, #8a50d8 80%, #199fd7 100%);">Gaurav
                             Singh Panwar</span>
                     </h1>
 
@@ -561,21 +557,21 @@
                         integrations.
                     </p>
 
-                    <!-- Action Buttons - single horizontal row on all screen sizes -->
-                    <div class="flex flex-nowrap gap-2 sm:gap-3 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <!-- Action Buttons: flex-wrap so on very small screens they go to next line -->
+                    <div class="flex flex-wrap gap-2 animate-fade-in-up w-full" style="animation-delay: 0.3s;">
                         <a href="#projects" onclick="handleNavClick(event,'projects')"
-                            class="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 rounded-lg bg-brand-600 text-white font-semibold shadow-md hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm shadow-brand-500/25 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
-                            <i data-lucide="folder-open" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                            class="flex-1 basis-[30%] min-w-[90px] py-2.5 px-2 sm:px-5 rounded-lg bg-brand-600 text-white font-semibold shadow-md hover:bg-brand-700 hover:-translate-y-0.5 transition-all duration-300 text-[11px] sm:text-sm shadow-brand-500/25 flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+                            <i data-lucide="folder-open" class="w-3 h-3 sm:w-4 sm:h-4 shrink-0"></i>
                             <span>View My Work</span>
                         </a>
                         <a href="#resume-preview" onclick="handleNavClick(event,'resume-preview')"
-                            class="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 rounded-lg bg-white border-2 border-brand-300 text-brand-700 font-semibold hover:border-brand-600 hover:bg-brand-50 hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
-                            <i data-lucide="eye" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                            class="flex-1 basis-[30%] min-w-[90px] py-2.5 px-2 sm:px-5 rounded-lg bg-white border-2 border-brand-300 text-brand-700 font-semibold hover:border-brand-600 hover:bg-brand-50 hover:-translate-y-0.5 transition-all duration-300 text-[11px] sm:text-sm flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+                            <i data-lucide="eye" class="w-3 h-3 sm:w-4 sm:h-4 shrink-0"></i>
                             <span>Resume</span>
                         </a>
                         <a href="#contact" onclick="handleNavClick(event,'contact')"
-                            class="flex-1 sm:flex-none px-3 sm:px-5 py-2.5 rounded-lg bg-emerald-600 text-white font-semibold shadow-md hover:bg-emerald-700 hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm shadow-emerald-500/25 flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap">
-                            <i data-lucide="send" class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0"></i>
+                            class="flex-1 basis-[30%] min-w-[90px] py-2.5 px-2 sm:px-5 rounded-lg bg-emerald-600 text-white font-semibold shadow-md hover:bg-emerald-700 hover:-translate-y-0.5 transition-all duration-300 text-[11px] sm:text-sm shadow-emerald-500/25 flex items-center justify-center gap-1 sm:gap-2 whitespace-nowrap">
+                            <i data-lucide="send" class="w-3 h-3 sm:w-4 sm:h-4 shrink-0"></i>
                             <span>Get in Touch</span>
                         </a>
                     </div>
@@ -588,122 +584,112 @@
                         <div class="flex flex-wrap items-center gap-2 sm:gap-3">
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="Python">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="Python">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-400 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="Flask">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="Flask">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="FastAPI">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="FastAPI">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-green-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="Django">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="Django">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-green-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="MongoDB">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="MongoDB">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="PostgreSQL">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="PostgreSQL">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-orange-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="AWS">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 object-contain group-hover:scale-110 transition-transform"
                                     alt="AWS">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="Docker">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform"
                                     alt="Docker">
                             </div>
                             <div class="group p-2 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 cursor-help"
                                 title="SQL">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
                                     class="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform" alt="SQL">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Side: Animated Code Card -->
-                <div class="hidden lg:flex items-center justify-center relative animate-fade-in-up"
+                <!-- Right Side: 3D Cube Visual -->
+                <div class="flex items-center justify-center relative animate-fade-in-up mt-6 lg:mt-0"
                     style="animation-delay:0.35s;">
                     <!-- Gradient halo behind card -->
                     <div
-                        class="absolute w-80 h-80 bg-gradient-to-br from-brand-300/40 via-accent-300/30 to-pink-300/30 rounded-full filter blur-3xl">
+                        class="absolute w-64 sm:w-80 h-64 sm:h-80 bg-gradient-to-br from-brand-300/40 via-accent-300/30 to-pink-300/30 rounded-full filter blur-3xl">
                     </div>
                     <!-- Open-to-work sticker -->
-                    <div class="absolute -top-4 -right-2 z-20">
+                    <div class="absolute -top-2 sm:-top-4 -right-1 sm:-right-2 z-20">
                         <div class="sticker-wrap">
                             <span class="dot-live-hero"></span>
                             <span class="rocket-anim-hero">🚀</span>
                             <span class="text-xs font-semibold text-indigo-700 whitespace-nowrap">Open to work</span>
                         </div>
                     </div>
-                    <!-- Terminal card -->
-                    <div
-                        class="relative z-10 w-full max-w-md bg-slate-900 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden">
-                        <!-- Terminal top bar -->
-                        <div class="flex items-center gap-2 px-4 py-3 bg-slate-800 border-b border-slate-700">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span class="ml-2 text-slate-400 text-xs font-mono">gaurav@backend ~ python main.py</span>
-                        </div>
-                        <!-- Terminal body -->
-                        <div class="p-5 font-mono text-sm space-y-1 min-h-[260px]">
-                            <p class="text-slate-500"># GSP's Backend Engine v2.0</p>
-                            <p class="text-green-400">from <span class="text-blue-400">fastapi</span> import FastAPI,
-                                Depends</p>
-                            <p class="text-green-400">from <span class="text-blue-400">sqlalchemy.ext.asyncio</span>
-                                import AsyncSession</p>
-                            <p class="text-slate-500 mt-2"># AI-Powered Automation Layer</p>
-                            <p class="text-purple-400">from <span class="text-blue-400">openai</span> import AsyncOpenAI
-                            </p>
-                            <p class="text-yellow-300 mt-2">app = FastAPI(title=<span class="text-green-300">"GSP
-                                    Portfolio API"</span>)</p>
-                            <p class="mt-2 text-blue-300">@app.get(<span class="text-green-300">"/hire-me"</span>)</p>
-                            <p class="text-yellow-200">async def <span class="text-green-400">hire_gaurav</span>():</p>
-                            <p class="text-slate-300 pl-4">return {</p>
-                            <p class="text-slate-300 pl-8"><span class="text-green-300">"status"</span>: <span
-                                    class="text-orange-300">"available"</span>,</p>
-                            <p class="text-slate-300 pl-8"><span class="text-green-300">"skills"</span>: <span
-                                    class="text-orange-300">"Python · FastAPI · AI"</span>,</p>
-                            <p class="text-slate-300 pl-8"><span class="text-green-300">"ready_to_build"</span>: <span
-                                    class="text-blue-400">True</span></p>
-                            <p class="text-slate-300 pl-4">}</p>
-                            <p class="text-green-400 mt-2 flex items-center gap-1">▶ <span class="text-white">Server
-                                    running on</span> <span class="text-cyan-400">port 8000</span> <span
-                                    class="w-2 h-4 bg-green-400 ml-1 animate-blink inline-block"></span></p>
-                        </div>
-                        <!-- Status bar -->
-                        <div
-                            class="px-5 py-2 bg-brand-600/20 border-t border-brand-500/30 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                                <span class="text-green-400 text-xs font-mono">Status: 200 OK · 18ms</span>
+                    <!-- 3D Python Cube — orbiting skill tags -->
+                    <div class="cube-scene-wrap cube-scene-bg">
+                        <div class="cube-scene" id="cubeScene">
+                            <div class="cube-iso-plane" id="cubeIsoPlane">
+                                <svg class="cube-traces-svg" viewBox="-190 -190 380 380" id="cubeTracesSvg"></svg>
+                                <div id="cubeCardsLayer" style="position:absolute;left:0;top:50%;width:100%;height:0"></div>
+                                <div class="cube-3d-wrap">
+                                    <div class="cube-3d" id="cube3d">
+                                        <div class="cube-3d-face cube-face-front"><div class="cube-face-edge-glow"></div><svg class="cube-py-logo" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><use href="#cubePyIcon"/></svg></div>
+                                        <div class="cube-3d-face cube-face-back"><div class="cube-face-edge-glow"></div><svg class="cube-py-logo" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><use href="#cubePyIcon"/></svg></div>
+                                        <div class="cube-3d-face cube-face-right"><div class="cube-face-edge-glow"></div><svg class="cube-py-logo" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><use href="#cubePyIcon"/></svg></div>
+                                        <div class="cube-3d-face cube-face-left"><div class="cube-face-edge-glow"></div><svg class="cube-py-logo" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><use href="#cubePyIcon"/></svg></div>
+                                        <div class="cube-3d-face cube-face-top"><div class="cube-face-edge-glow"></div><svg class="cube-py-logo" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><use href="#cubePyIcon"/></svg></div>
+                                        <div class="cube-3d-face cube-face-bottom"><div class="cube-face-edge-glow"></div><svg class="cube-py-logo" viewBox="0 0 256 255" xmlns="http://www.w3.org/2000/svg"><use href="#cubePyIcon"/></svg></div>
+                                    </div>
+                                    <div class="cube-pin cube-pin-top"></div><div class="cube-pin cube-pin-bottom"></div>
+                                    <div class="cube-pin cube-pin-left"></div><div class="cube-pin cube-pin-right"></div>
+                                </div>
                             </div>
-                            <span class="text-slate-400 text-xs font-mono">FastAPI + PostgreSQL</span>
                         </div>
                     </div>
+                    <!-- shared python logo definition for cube -->
+                    <svg width="0" height="0" style="position:absolute">
+                        <defs>
+                            <symbol id="cubePyIcon" viewBox="0 0 256 255">
+                                <linearGradient id="cubePg1" x1="12.959%" y1="12.039%" x2="79.639%" y2="78.201%">
+                                    <stop offset="0%" stop-color="#387EB8"/><stop offset="100%" stop-color="#366994"/>
+                                </linearGradient>
+                                <linearGradient id="cubePg2" x1="19.128%" y1="20.579%" x2="90.742%" y2="88.429%">
+                                    <stop offset="0%" stop-color="#FFE052"/><stop offset="100%" stop-color="#FFC331"/>
+                                </linearGradient>
+                                <path fill="url(#cubePg1)" d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.072 61.355.072 126.77c0 65.417 36.291 63.108 36.291 63.108h21.61v-30.354s-1.165-36.29 35.711-36.29h61.362s34.471.557 34.471-33.182V33.629S194.916.072 126.916.072zM92.802 19.66a11.12 11.12 0 1 1 0 22.24 11.12 11.12 0 0 1 0-22.24z"/>
+                                <path fill="url(#cubePg2)" d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.559 4.711 41.559-60.706c0-65.416-36.291-63.107-36.291-63.107h-21.61v30.355s1.165 36.29-35.711 36.29h-61.362s-34.471-.557-34.471 33.182v55.433s-5.235 33.54 62.765 33.54zm34.114-19.586a11.12 11.12 0 1 1 0-22.24 11.12 11.12 0 0 1 0 22.24z"/>
+                            </symbol>
+                        </defs>
+                    </svg>
                 </div>
             </div>
         </div>
@@ -729,31 +715,31 @@
                 <div class="flex space-x-16 pr-16 items-center">
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                             class="w-8 h-8" alt="Python">
                         Python
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
                             class="w-8 h-8" alt="Flask">
                         Flask
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
                             class="w-8 h-8" alt="FastAPI">
                         FastAPI
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
                             class="w-8 h-8" alt="Django">
                         Django
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
                             class="w-8 h-8" alt="MongoDB">
                         MongoDB
                     </span>
@@ -765,44 +751,44 @@
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
                             class="w-8 h-8" alt="MySQL">
                         MySQL
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
                             class="w-8 h-8" alt="PostgreSQL">
                         PostgreSQL
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
                             class="w-8 h-8" alt="Postman">
                         Postman
                     </span>
 
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
                             class="w-8 h-8" alt="Docker">
                         Docker
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
                             class="w-10 h-10 object-contain" alt="AWS">
                         AWS
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
                             class="w-8 h-8" alt="Linux">
                         Linux Basics
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
                             class="w-8 h-8" alt="Nginx">
                         Nginx
                     </span>
@@ -812,31 +798,31 @@
                 <div class="flex space-x-16 pr-16 items-center">
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                             class="w-8 h-8" alt="Python">
                         Python
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
                             class="w-8 h-8" alt="Flask">
                         Flask
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
                             class="w-8 h-8" alt="FastAPI">
                         FastAPI
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
                             class="w-8 h-8" alt="Django">
                         Django
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
                             class="w-8 h-8" alt="MongoDB">
                         MongoDB
                     </span>
@@ -848,43 +834,43 @@
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
                             class="w-8 h-8" alt="MySQL">
                         MySQL
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
                             class="w-8 h-8" alt="PostgreSQL">
                         PostgreSQL
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg"
                             class="w-8 h-8" alt="Postman">
                         Postman
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
                             class="w-8 h-8" alt="Docker">
                         Docker
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
                             class="w-10 h-10 object-contain" alt="AWS">
                         AWS
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
                             class="w-8 h-8" alt="Linux">
                         Linux Basics
                     </span>
                     <span
                         class="text-xl font-bold text-slate-600 flex items-center gap-3 hover:scale-110 transition-transform duration-300 cursor-default">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
+                        <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg"
                             class="w-8 h-8" alt="Nginx">
                         Nginx
                     </span>
@@ -1068,7 +1054,7 @@
                                     Growth</div>
                             </div>
                             <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
-                                <div class="text-2xl font-bold text-purple-600">10+</div>
+                                <div class="text-2xl font-bold text-purple-600">5+</div>
                                 <div class="text-[10px] text-slate-500 font-semibold uppercase tracking-wide">Projects
                                 </div>
                             </div>
@@ -1145,7 +1131,7 @@
                             <div class="flex flex-wrap gap-2">
                                 <span
                                     class="px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-md font-semibold hover:border-blue-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                                         class="w-3.5 h-3.5" alt="Python">
                                     Python
                                 </span>
@@ -1161,43 +1147,43 @@
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs rounded-md font-semibold hover:border-emerald-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
                                         class="w-3.5 h-3.5" alt="MongoDB">
                                     MongoDB
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-cyan-50 border border-cyan-200 text-cyan-700 text-xs rounded-md font-semibold hover:border-cyan-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
                                         class="w-3.5 h-3.5" alt="MySQL">
                                     MySQL
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-slate-100 border border-slate-300 text-slate-700 text-xs rounded-md font-semibold hover:border-slate-400 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg"
                                         class="w-3.5 h-3.5" alt="Flask">
                                     Flask
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-teal-50 border border-teal-200 text-teal-700 text-xs rounded-md font-semibold hover:border-teal-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
                                         class="w-3.5 h-3.5" alt="FastAPI">
                                     FastAPI
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-sky-50 border border-sky-200 text-sky-700 text-xs rounded-md font-semibold hover:border-sky-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
                                         class="w-3.5 h-3.5" alt="Docker">
                                     Docker
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-orange-50 border border-orange-200 text-orange-700 text-xs rounded-md font-semibold hover:border-orange-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
                                         class="w-3.5 h-3.5" alt="AWS">
                                     AWS
                                 </span>
                                 <span
                                     class="px-2.5 py-1 bg-violet-50 border border-violet-200 text-violet-700 text-xs rounded-md font-semibold hover:border-violet-300 transition-colors cursor-default flex items-center gap-1.5">
-                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                                    <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
                                         class="w-3.5 h-3.5" alt="Git">
                                     Version Control
                                 </span>
@@ -1245,7 +1231,7 @@
                                     <div>
                                         <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Location
                                         </p>
-                                        <p class="text-xs font-semibold text-slate-700">Dehradun, Uttarakhand</p>
+                                        <p class="text-xs font-semibold text-slate-700">Dehradun, Uttarakhand, India</p>
                                     </div>
                                 </div>
 
@@ -1277,34 +1263,37 @@
                                     </div>
                                 </div>
 
-                                <!-- Socials Row -->
-                                <div class="pt-2 mt-2 border-t border-slate-200/60 flex gap-3">
-                                    <a href="https://github.com/gauravpanwar08" target="_blank"
-                                        class="flex-1 flex items-center justify-center gap-2 p-2 bg-white border border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition group">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="w-4 h-4 text-slate-600 group-hover:text-slate-900">
-                                            <path
-                                                d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
-                                            <path d='M9 18c-4.51 2-5-2-7-2' />
-                                        </svg>
-                                        <span
-                                            class="text-xs font-medium text-slate-600 group-hover:text-black">GitHub</span>
-                                    </a>
+                                <!-- Socials Row: LinkedIn (left) - GitHub (middle) - Email (right) -->
+                                <div class="pt-2 mt-2 border-t border-slate-200/60 flex gap-2">
                                     <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
-                                        class="flex-1 flex items-center justify-center gap-2 p-2 bg-white border border-slate-300 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition group">
+                                        class="flex-1 flex items-center justify-center gap-1.5 p-2 rounded-lg text-white hover:opacity-90 transition-all" style="background:#0A66C2;">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="w-4 h-4 text-slate-600 group-hover:text-blue-900">
+                                            stroke-linejoin="round" class="w-4 h-4">
                                             <path
                                                 d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
                                             <rect width='4' height='12' x='2' y='9' />
                                             <circle cx='4' cy='4' r='2' />
                                         </svg>
+                                        <span class="text-xs font-medium text-white">LinkedIn</span>
+                                    </a>
+                                    <a href="https://github.com/gauravpanwar08" target="_blank"
+                                        class="flex-1 flex items-center justify-center gap-1.5 p-2 rounded-lg text-white hover:opacity-90 transition-all" style="background:#24292e;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            class="w-4 h-4 text-white">
+                                            <path
+                                                d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                                            <path d='M9 18c-4.51 2-5-2-7-2' />
+                                        </svg>
                                         <span
-                                            class="text-xs font-medium text-slate-600 group-hover:text-blue-700">LinkedIn</span>
+                                            class="text-xs font-medium text-white">GitHub</span>
+                                    </a>
+                                    <a href="mailto:gauravsinghpanwar81@gmail.com"
+                                        class="flex-1 flex items-center justify-center gap-1.5 p-2 rounded-lg text-white hover:opacity-90 transition-all" style="background:#EA4335;">
+                                        <i data-lucide="mail" class="w-4 h-4"></i>
+                                        <span class="text-xs font-medium text-white">Email</span>
                                     </a>
                                 </div>
                             </div>
@@ -1315,7 +1304,7 @@
 
                     <!-- Resume-Preview Footer with Download Button -->
                     <div class="p-4 border-t border-slate-100 bg-slate-50/50">
-                        <a href="./assets/resume/Gaurav_Singh_Panwar_Resume.pdf"
+                        <a href="./assets/resume/resume.pdf"
                             download="Gaurav_Singh_Panwar_Resume.pdf"
                             class="group flex items-center justify-center gap-2 px-4 py-2 bg-brand-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-brand-700 transition transform hover:-translate-y-0.5 w-full">
                             <i data-lucide="download" class="w-4 h-8 transition-transform group-hover:scale-110"></i>
@@ -1718,7 +1707,7 @@
                     flexible, scalable engineering.</h3>
                 <p class="text-slate-600 text-base sm:text-lg">Just like robust platforms automate testing, I automate
                     backend
-                    efficiency. From high-concurrency APIs to serverless deployment.</p>
+                    efficiency. From high-concurrency APIs to containerized deployment.</p>
             </div>
 
             <!-- Feature Grid -->
@@ -1733,8 +1722,8 @@
                     </div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">High-Perf API Design</h4>
                     <p class="text-slate-600 leading-relaxed">
-                        RESTful and GraphQL APIs built with FastAPI/Django. Optimized for low latency, high throughput,
-                        and strict type safety.
+                        RESTful APIs built with FastAPI, fully async with Pydantic v2 validation. Optimized for low
+                        latency, high throughput, and strict type safety.
                     </p>
                 </div>
 
@@ -1747,8 +1736,8 @@
                     </div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">Database Optimization</h4>
                     <p class="text-slate-600 leading-relaxed">
-                        Advanced SQL (PostgreSQL) tuning, indexing strategies, and NoSQL (Redis/Mongo) integration for
-                        caching and real-time data.
+                        Advanced PostgreSQL schema design, indexing strategies, and async SQLAlchemy with Alembic
+                        migrations. Redis integration for caching and session management.
                     </p>
                 </div>
 
@@ -1761,8 +1750,8 @@
                     </div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">Cloud Infrastructure</h4>
                     <p class="text-slate-600 leading-relaxed">
-                        Serverless Lambda functions, Docker containerization, and Kubernetes orchestration on AWS or
-                        GCP.
+                        Docker and Docker Compose for full-stack containerization, Nginx reverse proxy configuration,
+                        and multi-service orchestration for production deployment.
                     </p>
                 </div>
 
@@ -1775,8 +1764,8 @@
                     </div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">CI/CD Pipelines</h4>
                     <p class="text-slate-600 leading-relaxed">
-                        Automated testing and deployment workflows using GitHub Actions and Jenkins. Zero-downtime
-                        deployments.
+                        Automated testing workflows with GitHub Actions, Makefile-driven developer shortcuts, and
+                        structured deployment processes for reliable releases.
                     </p>
                 </div>
 
@@ -1789,8 +1778,8 @@
                     </div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">AI Model Integration</h4>
                     <p class="text-slate-600 leading-relaxed">
-                        Embedding LLMs and ML models into production backends. LangChain integration and vector database
-                        management.
+                        Integrating AI and LLM capabilities into production backends, with a focus on practical
+                        workflow automation and API-driven AI features.
                     </p>
                 </div>
 
@@ -1803,8 +1792,8 @@
                     </div>
                     <h4 class="text-xl font-bold text-slate-900 mb-3">Security & Auth</h4>
                     <p class="text-slate-600 leading-relaxed">
-                        OAuth2, JWT implementation, and OWASP security practices. Ensuring data integrity and
-                        compliance.
+                        JWT-based authentication with role-based access control (RBAC), bcrypt password hashing,
+                        and secure session handling for multi-role systems.
                     </p>
                 </div>
 
@@ -2012,7 +2001,7 @@
         </div>
     </section>
 
-    <!-- Project Case Studies (Redesigned with Filters) -->
+    <!-- Project Case Studies -->
     <section id="projects" class="py-14 sm:py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -2105,27 +2094,30 @@
                         </div>
 
                         <div>
+                            <h4 class="text-sm font-bold text-brand-600 uppercase tracking-wide mb-2">The Solution</h4>
+                            <p id="modal-solution" class="text-slate-600 leading-relaxed">
+                                <!-- Solution injected via JS -->
+                            </p>
+                        </div>
+
+                        <div>
                             <h4 class="text-sm font-bold text-brand-600 uppercase tracking-wide mb-2">Key Features
                                 Implemented</h4>
-                            <ul class="list-disc pl-5 space-y-1 text-slate-600 text-sm">
-                                <li>Scalable Microservices Architecture</li>
-                                <li>Real-time Data Processing using WebSockets</li>
-                                <li>Optimized Database Queries reducing latency by 40%</li>
-                                <li>Automated CI/CD Pipeline integration</li>
+                            <ul id="modal-features" class="list-disc pl-5 space-y-1 text-slate-600 text-sm">
+                                <!-- Features injected via JS -->
                             </ul>
                         </div>
 
                         <div>
                             <h4 class="text-sm font-bold text-brand-600 uppercase tracking-wide mb-2">Outcome</h4>
-                            <p class="text-slate-600 leading-relaxed text-sm">
-                                The system successfully handled peak loads of 10,000+ concurrent requests with zero
-                                downtime, improving overall user satisfaction scores by 25%.
+                            <p id="modal-outcome" class="text-slate-600 leading-relaxed text-sm">
+                                <!-- Outcome injected via JS -->
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal Footer (Close button removed, Demo updated) -->
+                <!-- Modal Footer -->
                 <div class="bg-slate-50 px-6 py-4 flex justify-end gap-3 border-t border-slate-100">
                     <a href="#" id="modal-demo-btn" target="_blank"
                         class="group flex items-center justify-center gap-2 px-6 py-2.5 bg-brand-600 text-white rounded-xl font-medium hover:bg-brand-700 transition shadow-lg shadow-brand-500/30">
@@ -2178,7 +2170,7 @@
     </div>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-14 sm:py-24 bg-slate-50 overflow-hidden">
+    <section id="contact" class="py-14 sm:py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
             <div class="text-center mb-8 sm:mb-12">
@@ -2278,17 +2270,6 @@
 
                         <!-- Social Links - responsive, no overflow -->
                         <div class="w-full mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-slate-100 flex gap-3">
-                            <a href="https://github.com/gauravpanwar08" target="_blank"
-                                class="flex-1 h-10 rounded-lg bg-[#24292e] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-black transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="w-4 h-4 shrink-0">
-                                    <path
-                                        d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
-                                    <path d='M9 18c-4.51 2-5-2-7-2' />
-                                </svg>
-                                <span class="truncate">GitHub</span>
-                            </a>
                             <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
                                 class="flex-1 h-10 rounded-lg bg-[#0A66C2] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-[#004182] transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -2300,6 +2281,17 @@
                                     <circle cx='4' cy='4' r='2' />
                                 </svg>
                                 <span class="truncate">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/gauravpanwar08" target="_blank"
+                                class="flex-1 h-10 rounded-lg bg-[#24292e] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-black transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4 shrink-0">
+                                    <path
+                                        d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                                    <path d='M9 18c-4.51 2-5-2-7-2' />
+                                </svg>
+                                <span class="truncate">GitHub</span>
                             </a>
                             <a href="mailto:gauravsinghpanwar81@gmail.com"
                                 class="flex-1 h-10 rounded-lg bg-[#EA4335] text-white flex items-center justify-center gap-1.5 font-medium hover:bg-[#D93025] transition-all hover:-translate-y-1 hover:shadow-lg text-xs sm:text-sm overflow-hidden">
@@ -2465,19 +2457,7 @@
                     <circle cx="90" cy="148" r="2.8" fill="rgba(255,255,255,0.7)" />
                     <path d="M72 158 Q80 164 88 158" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.8"
                         stroke-linecap="round" />
-                    <text x="18" y="132" font-family="monospace" font-size="13" fill="#818cf8" font-weight="bold"
-                        style="--ftdx:-22px;--ftdy:-18px;animation:ftspark 2s ease-out infinite">{</text>
-                    <text x="124" y="135" font-family="monospace" font-size="13" fill="#e879f9" font-weight="bold"
-                        style="--ftdx:20px;--ftdy:-22px;animation:ftspark 2s ease-out infinite 0.5s">}</text>
-                    <text x="14" y="155" font-family="monospace" font-size="10" fill="#67e8f9" font-weight="bold"
-                        style="--ftdx:-18px;--ftdy:-15px;animation:ftspark 2s ease-out infinite 1s">&lt;/&gt;</text>
-                    <text x="118" y="158" font-family="monospace" font-size="10" fill="#34d399" font-weight="bold"
-                        style="--ftdx:16px;--ftdy:-18px;animation:ftspark 2s ease-out infinite 1.5s">()</text>
-                    <text x="28" y="172" font-family="monospace" font-size="12" fill="#fbbf24" font-weight="bold"
-                        style="--ftdx:-14px;--ftdy:-10px;animation:ftspark 2.4s ease-out infinite 0.7s">#</text>
-                    <text x="116" y="174" font-family="monospace" font-size="13" fill="#f472b6" font-weight="bold"
-                        style="--ftdx:14px;--ftdy:-12px;animation:ftspark 2.4s ease-out infinite 1.2s">=</text>
-                </g>
+                    </g>
             </svg>
         </div>
 
@@ -2485,11 +2465,11 @@
         <div class="relative z-10 max-w-lg mx-auto text-center px-6">
             <!-- Name & Tagline -->
             <p class="text-xl font-bold"
-                style="background:linear-gradient(90deg,#a5b4fc,#e879f9,#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                style="background:linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
                 Gaurav Singh Panwar
             </p>
             <div class="w-10 h-0.5 mx-auto my-4 rounded-full"
-                style="background:linear-gradient(90deg,#818cf8,#e879f9);"></div>
+                style="background:linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);"></div>
 
             <p class="text-sm mt-1 leading-relaxed" style="color:rgba(255,255,255,0.5);">
                 Python Backend Engineer
@@ -2499,7 +2479,7 @@
 
             <!-- Accent line -->
             <div class="w-10 h-0.5 mx-auto my-4 rounded-full"
-                style="background:linear-gradient(90deg,#818cf8,#e879f9);"></div>
+                style="background:linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);"></div>
 
             <!-- Quick Links -->
             <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm mb-6"
@@ -2529,21 +2509,10 @@
                     class="hover:text-indigo-300 transition">Resume</a>
             </div>
             <div class="w-10 h-0.5 mx-auto my-4 rounded-full"
-                style="background:linear-gradient(90deg,#818cf8,#e879f9);"></div>
+                style="background:linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);"></div>
 
             <!-- Social Icons -->
             <div class="flex justify-center gap-3 mb-6">
-                <a href="https://github.com/gauravpanwar08" target="_blank"
-                    class="w-9 h-9 rounded-lg flex items-center justify-center transition hover:scale-110"
-                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"
-                        style="color:rgba(255,255,255,0.7);">
-                        <path
-                            d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
-                        <path d='M9 18c-4.51 2-5-2-7-2' />
-                    </svg>
-                </a>
                 <a href="https://www.linkedin.com/in/gauravpanwar08" target="_blank"
                     class="w-9 h-9 rounded-lg flex items-center justify-center transition hover:scale-110"
                     style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);">
@@ -2553,6 +2522,17 @@
                         <path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z' />
                         <rect width='4' height='12' x='2' y='9' />
                         <circle cx='4' cy='4' r='2' />
+                    </svg>
+                </a>
+                <a href="https://github.com/gauravpanwar08" target="_blank"
+                    class="w-9 h-9 rounded-lg flex items-center justify-center transition hover:scale-110"
+                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"
+                        style="color:rgba(255,255,255,0.7);">
+                        <path
+                            d='M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4' />
+                        <path d='M9 18c-4.51 2-5-2-7-2' />
                     </svg>
                 </a>
                 <a href="mailto:gauravsinghpanwar81@gmail.com"
@@ -2576,7 +2556,7 @@
 
                     <!-- Happy Coding Gradient (Below Copyright) -->
                     <p class="text-sm font-semibold m-0"
-                        style="background:linear-gradient(90deg,#818cf8,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        style="background:linear-gradient(90deg, #199fd7 0%, #99bd3c 25%, #fc7942 50%, #ee5091 75%, #8a50d8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
                         Happy Coding! &lt;/&gt;
                     </p>
 
@@ -2585,11 +2565,11 @@
         </div>
     </footer>
 
-    <!-- Scripts: load order matters — projects.js → lucide → main.js -->
-    <script src="js/projects.js"></script>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Inline scripts: projects → lucide CDN → main -->
 
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -10,6 +10,7 @@
  *  ─────────────────────────────────────────────────────────
  *  title       : "Project Name"              (required)
  *  description : "Short description..."      (required)
+ *                → Short blurb shown on the card (1 line)
  *  icon        : "lucide-icon-name"          (required)
  *                → https://lucide.dev/icons/
  *                  Examples: "bot", "database", "code-2",
@@ -36,9 +37,17 @@
  *                → "#" if no live demo
  *
  *  featured    : true | false               (optional)
- *                → true = homepage pe dikhega (first 3)
- *                   false = "View All Projects" me hi milega
+ *                → true = shown on homepage (first 3)
+ *                   false = only shown under "View All Projects"
  *                  Default: false
+ *
+ *  caseStudy   : { challenge, solution, features, outcome }  (optional)
+ *                → Full content for the case study modal (opened via the "Case Study" button).
+ *                  All fields are optional — anything left out falls back to a generic default.
+ *                  challenge : "Problem statement..."           (string)
+ *                  solution  : "How you solved it..."           (string)
+ *                  features  : ["Feature 1", "Feature 2", ...]  (array)
+ *                  outcome   : "Result/impact sentence..."      (string)
  *
  * ============================================================
  */
@@ -47,93 +56,80 @@ const PROJECTS = [
 
     // ── 1 ──────────────────────────────────────────────────
     {
-        title: "SmartDB Manager",
-        description: "A comprehensive database management system with intelligent query optimization and automated backup features.",
-        icon: "database",
-        theme: "emerald",
-        category: "backend",
-        tags: ["PostgreSQL", "Redis", "FastAPI"],
-        github: "https://github.com/gauravpanwar08",
+        title: "MEDiFLOW HMS",
+        description: "Hospital Management System with secure authentication, patient records, appointments, billing, and role-based access control.",
+        icon: "hospital",
+        theme: "blue",
+        category: "backend fullstack",
+        tags: ["FastAPI", "React", "PostgreSQL"],
+        github: "https://github.com/gauravpanwar08/MEDiFLOW-HMS",
         demo: "#",
-        featured: true
+        featured: true,
+        caseStudy: {
+            challenge: "Managing patients, appointments, billing, and staff operations in separate workflows made hospital management inefficient and difficult to scale.",
+            solution: "Developed a modular FastAPI backend with JWT authentication, PostgreSQL database, and React frontend following a scalable REST API architecture.",
+            features: [
+                "Role-Based Authentication (RBAC)",
+                "Patient & Doctor Management",
+                "Appointment Scheduling",
+                "Billing & Payment Management",
+                "REST API with PostgreSQL",
+                "Dockerized Deployment"
+            ],
+            outcome: "Built a scalable healthcare platform with a clean architecture that can be extended into a production-ready multi-tenant SaaS."
+        }
     },
 
     // ── 2 ──────────────────────────────────────────────────
     {
-        title: "ScaleCom API",
-        description: "High-performance e-commerce backend handling 10k+ requests/sec with microservices architecture.",
-        icon: "shopping-cart",
-        theme: "indigo",
+        title: "IronCore GymOS",
+        description: "Gym Management System for memberships, attendance, trainers, payments, and administrative operations.",
+        icon: "dumbbell",
+        theme: "orange",
         category: "backend fullstack",
-        tags: ["Django", "Docker", "AWS"],
-        github: "https://github.com/gauravpanwar08",
+        tags: ["FastAPI", "React", "PostgreSQL"],
+        github: "https://github.com/gauravpanwar08/IronCore-GymOS",
         demo: "#",
-        featured: true
+        featured: true,
+        caseStudy: {
+            challenge: "Gym owners needed a centralized system to manage memberships, attendance, trainers, and payments instead of relying on spreadsheets and manual records.",
+            solution: "Built a modern FastAPI backend with secure authentication and PostgreSQL, integrated with a React dashboard for daily gym operations.",
+            features: [
+                "Member Management",
+                "Attendance Tracking",
+                "Membership Plans",
+                "Trainer Management",
+                "Payment Tracking",
+                "Admin Dashboard"
+            ],
+            outcome: "Created a scalable Gym Management platform that simplifies daily operations and serves as the foundation for a future multi-tenant SaaS."
+        }
     },
 
     // ── 3 ──────────────────────────────────────────────────
     {
-        title: "Automation Bot",
-        description: "A versatile automation tool that streamlines repetitive tasks across multiple platforms with custom workflows.",
-        icon: "settings",
-        theme: "orange",
-        category: "automation",
-        tags: ["Python", "Selenium", "REST API"],
-        github: "https://github.com/gauravpanwar08",
-        demo: "#",
-        featured: true
-    },
-
-    // ── 4 ──────────────────────────────────────────────────
-    {
-        title: "Jarvis AI Assistant",
-        description: "An intelligent virtual assistant that performs tasks and automates workflows using advanced NLP models.",
-        icon: "bot",
-        theme: "violet",
-        category: "ai",
-        tags: ["Python", "TensorFlow", "NLP"],
-        github: "https://github.com/gauravpanwar08",
-        demo: "#",
-        featured: false
-    },
-
-    // ── 5 ──────────────────────────────────────────────────
-    {
-        title: "Nexus Chat Engine",
-        description: "A distributed websocket server supporting 1M+ concurrent connections with persistent message history.",
-        icon: "message-square",
+        title: "Fullstack Login System",
+        description: "Secure authentication system featuring user registration, login, protected routes, and session management.",
+        icon: "shield-check",
         theme: "emerald",
-        category: "fullstack backend",
-        tags: ["WebSockets", "Redis", "Go/Python"],
-        github: "https://github.com/gauravpanwar08",
+        category: "backend fullstack",
+        tags: ["FastAPI", "React", "JWT"],
+        github: "https://github.com/gauravpanwar08/Fullstack-Login-System",
         demo: "#",
-        featured: false
-    },
-
-    // ── 6 ──────────────────────────────────────────────────
-    {
-        title: "Cloud Transcoder",
-        description: "Event-driven serverless architecture that automatically processes and transcodes high-res video uploads.",
-        icon: "video",
-        theme: "orange",
-        category: "backend automation",
-        tags: ["AWS Lambda", "S3", "FFmpeg"],
-        github: "https://github.com/gauravpanwar08",
-        demo: "#",
-        featured: false
-    },
-
-    // ── 7 ──────────────────────────────────────────────────
-    {
-        title: "LogSentinel",
-        description: "Distributed log aggregation system processing 500GB+ daily logs with real-time alerting and visualization.",
-        icon: "file-text",
-        theme: "zinc",
-        category: "backend",
-        tags: ["Python", "Kafka", "Elasticsearch"],
-        github: "https://github.com/gauravpanwar08",
-        demo: "#",
-        featured: false
+        featured: true,
+        caseStudy: {
+            challenge: "Applications require a secure authentication system to protect user accounts and restrict unauthorized access.",
+            solution: "Implemented JWT-based authentication with password hashing, protected API routes, and frontend authentication flow using React.",
+            features: [
+                "User Registration & Login",
+                "JWT Authentication",
+                "Password Hashing",
+                "Protected Routes",
+                "Role-Based Authorization",
+                "Session Management"
+            ],
+            outcome: "Built a reusable authentication system that can be integrated into future full-stack applications with minimal changes."
+        }
     },
 
     // ── ADD YOUR NEW PROJECT BELOW THIS LINE ───────────────
@@ -146,11 +142,16 @@ const PROJECTS = [
     //     tags: [],
     //     github: "",
     //     demo: "",
-    //     featured: false
+    //     featured: false,
+    //     caseStudy: {
+    //         challenge: "",
+    //         solution: "",
+    //         features: [],
+    //         outcome: ""
+    //     }
     // },
 
 ];
-
 
 /* ==============================================================================================
    THEME CONFIG  —  define colours for each theme.
@@ -176,7 +177,7 @@ const GITHUB_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
 /* ========================================================================================================
    CARD RENDERER  —  By using a project object create full HTML card with correct theme colors and icons.
    ======================================================================================================== */
-function createProjectCard(project) {
+function createProjectCard(project, projectIndex) {
     const t = THEME_CONFIG[project.theme] || THEME_CONFIG.violet;
 
     const tagsHTML = project.tags
@@ -186,6 +187,7 @@ function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = `project-card bg-white rounded-3xl p-5 sm:p-8 border border-zinc-200 shadow-sm hover:shadow-xl ${t.shadow} transition-all duration-300 flex flex-col group`;
     card.setAttribute('data-category', project.category);
+    card.setAttribute('data-project-index', projectIndex);
 
     card.innerHTML = `
         <!-- Icon Area -->
@@ -235,14 +237,14 @@ function renderProjects() {
     const grid = document.getElementById('projects-grid');
     if (!grid) return;
 
-    // Clear any static HTML (backward compat)
+    // Clear the grid before rendering
     grid.innerHTML = '';
 
     PROJECTS.forEach((project, index) => {
-        const card = createProjectCard(project);
+        const card = createProjectCard(project, index);
 
-        // featured:false cards homepage pe hidden rahenge
-        // (View All Projects overlay me sab dikhenge)
+        // featured:false cards stay hidden on the homepage
+        // (they only show up inside the "View All Projects" overlay)
         if (!project.featured) {
             card.classList.add('hidden-project');
         }
